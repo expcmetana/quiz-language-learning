@@ -1,0 +1,97 @@
+verb,tense,person,answer,choices,hint
+haber,Presente de subjuntivo,yo,haya,hayas;hayamos;hayáis,(чтобы) я имел (вспомог.)
+haber,Presente de subjuntivo,tú,hayas,haya;hayamos;hayáis,(чтобы) ты имел (вспомог.)
+haber,Presente de subjuntivo,él/ella,haya,hayamos;hayáis;hayan,(чтобы) он/она имел (вспомог.)
+haber,Presente de subjuntivo,nosotros,hayamos,hayáis;hayan;haya,(чтобы) мы имели (вспомог.)
+haber,Presente de subjuntivo,vosotros,hayáis,hayan;haya;hayas,(чтобы) вы имели (вспомог.)
+haber,Presente de subjuntivo,ellos/ellas,hayan,haya;hayas;hayamos,(чтобы) они имели (вспомог.)
+querer,Presente de subjuntivo,yo,quiera,quieras;queramos;queráis,(чтобы) я хотел
+querer,Presente de subjuntivo,tú,quieras,quiera;queramos;queráis,(чтобы) ты хотел
+querer,Presente de subjuntivo,él/ella,quiera,queramos;queráis;quieran,(чтобы) он/она хотел
+querer,Presente de subjuntivo,nosotros,queramos,queráis;quieran;quiera,(чтобы) мы хотели
+querer,Presente de subjuntivo,vosotros,queráis,quieran;quiera;quieras,(чтобы) вы хотели
+querer,Presente de subjuntivo,ellos/ellas,quieran,quiera;quieras;queramos,(чтобы) они хотели
+sentir,Presente de subjuntivo,yo,sienta,sientas;sintamos;sintáis,(чтобы) я чувствовал
+sentir,Presente de subjuntivo,tú,sientas,sienta;sintamos;sintáis,(чтобы) ты чувствовал
+sentir,Presente de subjuntivo,él/ella,sienta,sintamos;sintáis;sientan,(чтобы) он/она чувствовал
+sentir,Presente de subjuntivo,nosotros,sintamos,sintáis;sientan;sienta,(чтобы) мы чувствовали
+sentir,Presente de subjuntivo,vosotros,sintáis,sientan;sienta;sientas,(чтобы) вы чувствовали
+sentir,Presente de subjuntivo,ellos/ellas,sientan,sienta;sientas;sintamos,(чтобы) они чувствовали
+pedir,Presente de subjuntivo,yo,pida,pidas;pidamos;pidáis,(чтобы) я просил
+pedir,Presente de subjuntivo,tú,pidas,pida;pidamos;pidáis,(чтобы) ты просил
+pedir,Presente de subjuntivo,él/ella,pida,pidamos;pidáis;pidan,(чтобы) он/она просил
+pedir,Presente de subjuntivo,nosotros,pidamos,pidáis;pidan;pida,(чтобы) мы просили
+pedir,Presente de subjuntivo,vosotros,pidáis,pidan;pida;pidas,(чтобы) вы просили
+pedir,Presente de subjuntivo,ellos/ellas,pidan,pida;pidas;pidamos,(чтобы) они просили
+seguir,Presente de subjuntivo,yo,siga,sigas;sigamos;sigáis,(чтобы) я продолжал
+seguir,Presente de subjuntivo,tú,sigas,siga;sigamos;sigáis,(чтобы) ты продолжал
+seguir,Presente de subjuntivo,él/ella,siga,sigamos;sigáis;sigan,(чтобы) он/она продолжал
+seguir,Presente de subjuntivo,nosotros,sigamos,sigáis;sigan;siga,(чтобы) мы продолжали
+seguir,Presente de subjuntivo,vosotros,sigáis,sigan;siga;sigas,(чтобы) вы продолжали
+seguir,Presente de subjuntivo,ellos/ellas,sigan,siga;sigas;sigamos,(чтобы) они продолжали
+conocer,Presente de subjuntivo,yo,conozca,conozcas;conozcamos;conozcáis,(чтобы) я знал
+conocer,Presente de subjuntivo,tú,conozcas,conozca;conozcamos;conozcáis,(чтобы) ты знал
+conocer,Presente de subjuntivo,él/ella,conozca,conozcamos;conozcáis;conozcan,(чтобы) он/она знал
+conocer,Presente de subjuntivo,nosotros,conozcamos,conozcáis;conozcan;conozca,(чтобы) мы знали
+conocer,Presente de subjuntivo,vosotros,conozcáis,conozcan;conozca;conozcas,(чтобы) вы знали
+conocer,Presente de subjuntivo,ellos/ellas,conozcan,conozca;conozcas;conozcamos,(чтобы) они знали
+construir,Presente de subjuntivo,yo,construya,construyas;construyamos;construyáis,(чтобы) я строил
+construir,Presente de subjuntivo,tú,construyas,construya;construyamos;construyáis,(чтобы) ты строил
+construir,Presente de subjuntivo,él/ella,construya,construyamos;construyáis;construyan,(чтобы) он/она строил
+construir,Presente de subjuntivo,nosotros,construyamos,construyáis;construyan;construya,(чтобы) мы строили
+construir,Presente de subjuntivo,vosotros,construyáis,construyan;construya;construyas,(чтобы) вы строили
+construir,Presente de subjuntivo,ellos/ellas,construyan,construya;construyas;construyamos,(чтобы) они строили
+poner,Presente de subjuntivo,yo,ponga,pongas;pongamos;pongáis,(чтобы) я клал
+poner,Presente de subjuntivo,tú,pongas,ponga;pongamos;pongáis,(чтобы) ты клал
+poner,Presente de subjuntivo,él/ella,ponga,pongamos;pongáis;pongan,(чтобы) он/она клал
+poner,Presente de subjuntivo,nosotros,pongamos,pongáis;pongan;ponga,(чтобы) мы клали
+poner,Presente de subjuntivo,vosotros,pongáis,pongan;ponga;pongas,(чтобы) вы клали
+poner,Presente de subjuntivo,ellos/ellas,pongan,ponga;pongas;pongamos,(чтобы) они клали
+salir,Presente de subjuntivo,yo,salga,salgas;salgamos;salgáis,(чтобы) я выходил
+salir,Presente de subjuntivo,tú,salgas,salga;salgamos;salgáis,(чтобы) ты выходил
+salir,Presente de subjuntivo,él/ella,salga,salgamos;salgáis;salgan,(чтобы) он/она выходил
+salir,Presente de subjuntivo,nosotros,salgamos,salgáis;salgan;salga,(чтобы) мы выходили
+salir,Presente de subjuntivo,vosotros,salgáis,salgan;salga;salgas,(чтобы) вы выходили
+salir,Presente de subjuntivo,ellos/ellas,salgan,salga;salgas;salgamos,(чтобы) они выходили
+decir,Presente de subjuntivo,yo,diga,digas;digamos;digáis,(чтобы) я говорил
+decir,Presente de subjuntivo,tú,digas,diga;digamos;digáis,(чтобы) ты говорил
+decir,Presente de subjuntivo,él/ella,diga,digamos;digáis;digan,(чтобы) он/она говорил
+decir,Presente de subjuntivo,nosotros,digamos,digáis;digan;diga,(чтобы) мы говорили
+decir,Presente de subjuntivo,vosotros,digáis,digan;diga;digas,(чтобы) вы говорили
+decir,Presente de subjuntivo,ellos/ellas,digan,diga;digas;digamos,(чтобы) они говорили
+dormir,Presente de subjuntivo,yo,duerma,duermas;durmamos;durmáis,(чтобы) я спал
+dormir,Presente de subjuntivo,tú,duermas,duerma;durmamos;durmáis,(чтобы) ты спал
+dormir,Presente de subjuntivo,él/ella,duerma,durmamos;durmáis;duerman,(чтобы) он/она спал
+dormir,Presente de subjuntivo,nosotros,durmamos,durmáis;duerman;duerma,(чтобы) мы спали
+dormir,Presente de subjuntivo,vosotros,durmáis,duerman;duerma;duermas,(чтобы) вы спали
+dormir,Presente de subjuntivo,ellos/ellas,duerman,duerma;duermas;durmamos,(чтобы) они спали
+pensar,Presente de subjuntivo,yo,piense,pienses;pensemos;penséis,(чтобы) я думал
+pensar,Presente de subjuntivo,tú,pienses,piense;pensemos;penséis,(чтобы) ты думал
+pensar,Presente de subjuntivo,él/ella,piense,pensemos;penséis;piensen,(чтобы) он/она думал
+pensar,Presente de subjuntivo,nosotros,pensemos,penséis;piensen;piense,(чтобы) мы думали
+pensar,Presente de subjuntivo,vosotros,penséis,piensen;piense;pienses,(чтобы) вы думали
+pensar,Presente de subjuntivo,ellos/ellas,piensen,piense;pienses;pensemos,(чтобы) они думали
+volver,Presente de subjuntivo,yo,vuelva,vuelvas;volvamos;volváis,(чтобы) я возвращался
+volver,Presente de subjuntivo,tú,vuelvas,vuelva;volvamos;volváis,(чтобы) ты возвращался
+volver,Presente de subjuntivo,él/ella,vuelva,volvamos;volváis;vuelvan,(чтобы) он/она возвращался
+volver,Presente de subjuntivo,nosotros,volvamos,volváis;vuelvan;vuelva,(чтобы) мы возвращались
+volver,Presente de subjuntivo,vosotros,volváis,vuelvan;vuelva;vuelvas,(чтобы) вы возвращались
+volver,Presente de subjuntivo,ellos/ellas,vuelvan,vuelva;vuelvas;volvamos,(чтобы) они возвращались
+traer,Presente de subjuntivo,yo,traiga,traigas;traigamos;traigáis,(чтобы) я приносил
+traer,Presente de subjuntivo,tú,traigas,traiga;traigamos;traigáis,(чтобы) ты приносил
+traer,Presente de subjuntivo,él/ella,traiga,traigamos;traigáis;traigan,(чтобы) он/она приносил
+traer,Presente de subjuntivo,nosotros,traigamos,traigáis;traigan;traiga,(чтобы) мы приносили
+traer,Presente de subjuntivo,vosotros,traigáis,traigan;traiga;traigas,(чтобы) вы приносили
+traer,Presente de subjuntivo,ellos/ellas,traigan,traiga;traigas;traigamos,(чтобы) они приносили
+oír,Presente de subjuntivo,yo,oiga,oigas;oigamos;oigáis,(чтобы) я слышал
+oír,Presente de subjuntivo,tú,oigas,oiga;oigamos;oigáis,(чтобы) ты слышал
+oír,Presente de subjuntivo,él/ella,oiga,oigamos;oigáis;oigan,(чтобы) он/она слышал
+oír,Presente de subjuntivo,nosotros,oigamos,oigáis;oigan;oiga,(чтобы) мы слышали
+oír,Presente de subjuntivo,vosotros,oigáis,oigan;oiga;oigas,(чтобы) вы слышали
+oír,Presente de subjuntivo,ellos/ellas,oigan,oiga;oigas;oigamos,(чтобы) они слышали
+conducir,Presente de subjuntivo,yo,conduzca,conduzcas;conduzcamos;conduzcáis,(чтобы) я водил (машину)
+conducir,Presente de subjuntivo,tú,conduzcas,conduzca;conduzcamos;conduzcáis,(чтобы) ты водил (машину)
+conducir,Presente de subjuntivo,él/ella,conduzca,conduzcamos;conduzcáis;conduzcan,(чтобы) он/она водил (машину)
+conducir,Presente de subjuntivo,nosotros,conduzcamos,conduzcáis;conduzcan;conduzca,(чтобы) мы водили (машину)
+conducir,Presente de subjuntivo,vosotros,conduzcáis,conduzcan;conduzca;conduzcas,(чтобы) вы водили (машину)
+conducir,Presente de subjuntivo,ellos/ellas,conduzcan,conduzca;conduzcas;conduzcamos,(чтобы) они водили (машину)

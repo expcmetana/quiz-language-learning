@@ -89,5 +89,61 @@
     "level": "B2",
     "file": "gap_b2.csv",
     "description": "Субхунтив vs индикатив, условные предложения, косвенная речь"
+  },
+  {
+    "name": "Неправильные глаголы: Presente",
+    "kind": "tenses",
+    "level": "A1",
+    "file": "irregular_presente.csv",
+    "description": "Только неправильные глаголы настоящего времени: тренировка исключений"
+  },
+  {
+    "name": "Неправильные глаголы: pretérito indefinido",
+    "kind": "tenses",
+    "level": "A2",
+    "file": "irregular_indefinido.csv",
+    "description": "Только неправильные формы простого прошедшего времени"
+  },
+  {
+    "name": "Неправильные глаголы: pretérito imperfecto",
+    "kind": "tenses",
+    "level": "A2",
+    "file": "irregular_imperfecto.csv",
+    "description": "Три глагола-исключения имперфекта: ser, ir, ver"
+  },
+  {
+    "name": "Неправильные глаголы: futuro simple",
+    "kind": "tenses",
+    "level": "B1",
+    "file": "irregular_futuro.csv",
+    "description": "Только неправильные основы простого будущего времени"
+  },
+  {
+    "name": "Неправильные глаголы: condicional",
+    "kind": "tenses",
+    "level": "B1",
+    "file": "irregular_condicional.csv",
+    "description": "Те же неправильные основы, что и в futuro, в условном наклонении"
+  },
+  {
+    "name": "Неправильные глаголы: pretérito perfecto",
+    "kind": "tenses",
+    "level": "B1",
+    "file": "irregular_perfecto.csv",
+    "description": "Глаголы с неправильными причастиями прошедшего времени"
+  },
+  {
+    "name": "Неправильные глаголы: presente de subjuntivo",
+    "kind": "tenses",
+    "level": "B2",
+    "file": "irregular_subjuntivo.csv",
+    "description": "Только неправильные основы сослагательного наклонения"
+  },
+  {
+    "name": "Неправильные глаголы: imperativo",
+    "kind": "tenses",
+    "level": "B2",
+    "file": "irregular_imperativo.csv",
+    "description": "Только неправильные формы повелительного наклонения"
   }
 ]

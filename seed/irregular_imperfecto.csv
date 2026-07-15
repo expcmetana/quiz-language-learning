@@ -1,0 +1,19 @@
+verb,tense,person,answer,choices,hint
+ser,Pretérito imperfecto,yo,era,eras;éramos;erais,я был(а)
+ser,Pretérito imperfecto,tú,eras,era;éramos;erais,ты был(а)
+ser,Pretérito imperfecto,él/ella,era,éramos;erais;eran,он/она был(а)
+ser,Pretérito imperfecto,nosotros,éramos,erais;eran;era,мы были
+ser,Pretérito imperfecto,vosotros,erais,eran;era;eras,вы были
+ser,Pretérito imperfecto,ellos/ellas,eran,era;eras;éramos,они были
+ir,Pretérito imperfecto,yo,iba,ibas;íbamos;ibais,я ходил(а)/шёл
+ir,Pretérito imperfecto,tú,ibas,iba;íbamos;ibais,ты ходил(а)
+ir,Pretérito imperfecto,él/ella,iba,íbamos;ibais;iban,он/она ходил(а)
+ir,Pretérito imperfecto,nosotros,íbamos,ibais;iban;iba,мы ходили
+ir,Pretérito imperfecto,vosotros,ibais,iban;iba;ibas,вы ходили
+ir,Pretérito imperfecto,ellos/ellas,iban,iba;ibas;íbamos,они ходили
+ver,Pretérito imperfecto,yo,veía,veías;veíamos;veíais,я видел(а)
+ver,Pretérito imperfecto,tú,veías,veía;veíamos;veíais,ты видел(а)
+ver,Pretérito imperfecto,él/ella,veía,veíamos;veíais;veían,он/она видел(а)
+ver,Pretérito imperfecto,nosotros,veíamos,veíais;veían;veía,мы видели
+ver,Pretérito imperfecto,vosotros,veíais,veían;veía;veías,вы видели
+ver,Pretérito imperfecto,ellos/ellas,veían,veía;veías;veíamos,они видели

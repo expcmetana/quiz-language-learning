@@ -1,0 +1,56 @@
+verb,tense,person,answer,choices,hint
+oír,Imperativo,tú,oye,oiga;oigamos;oíd,слушай
+oír,Imperativo,usted,oiga,oigamos;oíd;oigan,слушайте (Vd.)
+oír,Imperativo,nosotros,oigamos,oíd;oigan;oye,давайте послушаем
+oír,Imperativo,vosotros,oíd,oigan;oye;oiga,слушайте
+oír,Imperativo,ustedes,oigan,oye;oiga;oigamos,слушайте (Vds.)
+seguir,Imperativo,tú,sigue,siga;sigamos;seguid,продолжай
+seguir,Imperativo,usted,siga,sigamos;seguid;sigan,продолжайте (Vd.)
+seguir,Imperativo,nosotros,sigamos,seguid;sigan;sigue,давайте продолжим
+seguir,Imperativo,vosotros,seguid,sigan;sigue;siga,продолжайте
+seguir,Imperativo,ustedes,sigan,sigue;siga;sigamos,продолжайте (Vds.)
+servir,Imperativo,tú,sirve,sirva;sirvamos;servid,подавай
+servir,Imperativo,usted,sirva,sirvamos;servid;sirvan,подавайте (Vd.)
+servir,Imperativo,nosotros,sirvamos,servid;sirvan;sirve,давайте подадим
+servir,Imperativo,vosotros,servid,sirvan;sirve;sirva,подавайте
+servir,Imperativo,ustedes,sirvan,sirve;sirva;sirvamos,подавайте (Vds.)
+pedir,Imperativo,tú,pide,pida;pidamos;pedid,проси
+pedir,Imperativo,usted,pida,pidamos;pedid;pidan,просите (Vd.)
+pedir,Imperativo,nosotros,pidamos,pedid;pidan;pide,давайте попросим
+pedir,Imperativo,vosotros,pedid,pidan;pide;pida,просите
+pedir,Imperativo,ustedes,pidan,pide;pida;pidamos,просите (Vds.)
+sentir,Imperativo,tú,siente,sienta;sintamos;sentid,чувствуй
+sentir,Imperativo,usted,sienta,sintamos;sentid;sientan,чувствуйте (Vd.)
+sentir,Imperativo,nosotros,sintamos,sentid;sientan;siente,давайте почувствуем
+sentir,Imperativo,vosotros,sentid,sientan;siente;sienta,чувствуйте
+sentir,Imperativo,ustedes,sientan,siente;sienta;sintamos,чувствуйте (Vds.)
+construir,Imperativo,tú,construye,construya;construyamos;construid,строй
+construir,Imperativo,usted,construya,construyamos;construid;construyan,стройте (Vd.)
+construir,Imperativo,nosotros,construyamos,construid;construyan;construye,давайте построим
+construir,Imperativo,vosotros,construid,construyan;construye;construya,стройте
+construir,Imperativo,ustedes,construyan,construye;construya;construyamos,стройте (Vds.)
+huir,Imperativo,tú,huye,huya;huyamos;huid,убегай
+huir,Imperativo,usted,huya,huyamos;huid;huyan,убегайте (Vd.)
+huir,Imperativo,nosotros,huyamos,huid;huyan;huye,давайте убежим
+huir,Imperativo,vosotros,huid,huyan;huye;huya,убегайте
+huir,Imperativo,ustedes,huyan,huye;huya;huyamos,убегайте (Vds.)
+jugar,Imperativo,tú,juega,juegue;juguemos;jugad,играй
+jugar,Imperativo,usted,juegue,juguemos;jugad;jueguen,играйте (Vd.)
+jugar,Imperativo,nosotros,juguemos,jugad;jueguen;juega,давайте поиграем
+jugar,Imperativo,vosotros,jugad,jueguen;juega;juegue,играйте
+jugar,Imperativo,ustedes,jueguen,juega;juegue;juguemos,играйте (Vds.)
+conocer,Imperativo,tú,conoce,conozca;conozcamos;conoced,знакомься
+conocer,Imperativo,usted,conozca,conozcamos;conoced;conozcan,знакомьтесь (Vd.)
+conocer,Imperativo,nosotros,conozcamos,conoced;conozcan;conoce,давайте познакомимся
+conocer,Imperativo,vosotros,conoced,conozcan;conoce;conozca,знакомьтесь
+conocer,Imperativo,ustedes,conozcan,conoce;conozca;conozcamos,знакомьтесь (Vds.)
+traer,Imperativo,tú,trae,traiga;traigamos;traed,принеси
+traer,Imperativo,usted,traiga,traigamos;traed;traigan,принесите (Vd.)
+traer,Imperativo,nosotros,traigamos,traed;traigan;trae,давайте принесём
+traer,Imperativo,vosotros,traed,traigan;trae;traiga,принесите
+traer,Imperativo,ustedes,traigan,trae;traiga;traigamos,принесите (Vds.)
+elegir,Imperativo,tú,elige,elija;elijamos;elegid,выбирай
+elegir,Imperativo,usted,elija,elijamos;elegid;elijan,выбирайте (Vd.)
+elegir,Imperativo,nosotros,elijamos,elegid;elijan;elige,давайте выберем
+elegir,Imperativo,vosotros,elegid,elijan;elige;elija,выбирайте
+elegir,Imperativo,ustedes,elijan,elige;elija;elijamos,выбирайте (Vds.)
