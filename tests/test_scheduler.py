@@ -5,7 +5,6 @@ from datetime import datetime, timedelta, timezone
 from app.models import CardState
 from app.scheduler import (
     build_session,
-    new_cards_introduced_today,
     pick_distractors,
 )
 
@@ -17,19 +16,19 @@ def _deck(make_deck, n=15):
     return make_deck("Scheduler Deck", words)
 
 
-def test_new_words_capped_by_new_cards_per_day(db, make_deck, make_profile):
+def test_new_words_fill_up_to_available(db, make_deck, make_profile):
     deck = _deck(make_deck, n=15)
-    profile = make_profile("sched", new_cards_per_day=5)
+    profile = make_profile("sched")
 
     words = build_session(db, profile, deck.id, limit=20, now=NOW)
 
-    assert len(words) == 5  # capped by new_cards_per_day, not by 15 available
+    assert len(words) == 15  # all available new words, no daily cap
     assert all(w.deck_id == deck.id for w in words)
 
 
 def test_new_words_capped_by_limit(db, make_deck, make_profile):
     deck = _deck(make_deck, n=15)
-    profile = make_profile("sched", new_cards_per_day=10)
+    profile = make_profile("sched")
 
     words = build_session(db, profile, deck.id, limit=3, now=NOW)
     assert len(words) == 3
@@ -37,7 +36,7 @@ def test_new_words_capped_by_limit(db, make_deck, make_profile):
 
 def test_due_cards_first_most_overdue_first(db, make_deck, make_profile):
     deck = _deck(make_deck, n=15)
-    profile = make_profile("sched", new_cards_per_day=10)
+    profile = make_profile("sched")
     ids = [w.id for w in deck.words]
 
     # Two overdue cards, different due_at; the older one must come first.
@@ -54,15 +53,15 @@ def test_due_cards_first_most_overdue_first(db, make_deck, make_profile):
     assert {words[0].id, words[1].id} == {more_overdue, less_overdue}
 
 
-def test_new_budget_shrinks_with_cards_introduced_today(db, make_deck, make_profile):
+def test_cards_introduced_today_do_not_starve_later_sessions(db, make_deck, make_profile):
+    """No cross-session daily ceiling: items already introduced earlier today do not
+    reduce how many new items a later session may add — the user can keep studying."""
     deck = _deck(make_deck, n=15)
-    profile = make_profile("sched", new_cards_per_day=10)
+    profile = make_profile("sched")
     ids = [w.id for w in deck.words]
 
-    assert new_cards_introduced_today(db, profile.id, NOW) == 0
-
-    # 4 cards first_seen today (not due -> due in the future so they don't reappear)
-    for wid in ids[:4]:
+    # Simulate an earlier session today that first-saw 10 words (not due again).
+    for wid in ids[:10]:
         db.add(
             CardState(
                 profile_id=profile.id,
@@ -73,19 +72,36 @@ def test_new_budget_shrinks_with_cards_introduced_today(db, make_deck, make_prof
         )
     db.commit()
 
-    assert new_cards_introduced_today(db, profile.id, NOW) == 4
-
+    # A later session the same day still tops up with the remaining new words.
     words = build_session(db, profile, deck.id, limit=20, now=NOW)
-    # budget = 10 - 4 = 6 new words (none due)
-    assert len(words) == 6
-    assert all(w.id not in ids[:4] for w in words)
+    assert len(words) == 5  # the 5 words never seen, no daily budget subtraction
+    assert all(w.id not in ids[:10] for w in words)
 
 
-def test_new_budget_zero_when_all_used_today(db, make_deck, make_profile):
+def test_repeated_sessions_keep_serving_fresh_new_words(db, make_deck, make_profile):
+    """Two build_session calls in the same day both return fresh new items until the
+    deck is genuinely exhausted — no artificial per-day starvation of the second call."""
     deck = _deck(make_deck, n=15)
-    profile = make_profile("sched", new_cards_per_day=3)
-    ids = [w.id for w in deck.words]
-    for wid in ids[:3]:
+    profile = make_profile("sched")
+
+    first = build_session(db, profile, deck.id, limit=5, now=NOW)
+    assert len(first) == 5
+    # Record them as introduced (what a real session does on first sight).
+    for w in first:
+        db.add(CardState(profile_id=profile.id, word_id=w.id, first_seen_at=NOW, due_at=NOW + timedelta(days=5)))
+    db.commit()
+
+    second = build_session(db, profile, deck.id, limit=5, now=NOW)
+    assert len(second) == 5  # second same-day session is NOT starved
+    assert {w.id for w in second}.isdisjoint({w.id for w in first})  # a genuinely fresh batch
+
+
+def test_session_empty_when_deck_fully_exhausted(db, make_deck, make_profile):
+    """A session is empty only when the deck genuinely has no due items and no new
+    (never-seen) items left — every word already seen and not yet due."""
+    deck = _deck(make_deck, n=15)
+    profile = make_profile("sched")
+    for wid in [w.id for w in deck.words]:
         db.add(
             CardState(
                 profile_id=profile.id,

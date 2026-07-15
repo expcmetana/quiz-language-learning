@@ -24,7 +24,6 @@ from app.scheduler import (
     build_exercise_session,
     build_session,
     exercise_options,
-    new_cards_introduced_today,
 )
 from app.seed import seed_blocks
 
@@ -165,10 +164,10 @@ def test_seed_blocks_gap_row_builds_gap_exercise(db, blocks):
 
 # --- 2. scheduler --------------------------------------------------------
 
-def test_build_exercise_session_returns_new_up_to_budget(db, blocks, make_profile):
-    profile = make_profile("ex-budget", new_cards_per_day=5)
+def test_build_exercise_session_returns_new_up_to_limit(db, blocks, make_profile):
+    profile = make_profile("ex-budget")
     exs = build_exercise_session(db, profile, blocks["tenses"].id, limit=20)
-    assert len(exs) == 5  # capped by daily new-item budget, not the 12 available
+    assert len(exs) == len(CONJ_ROWS)  # all 12 available new exercises, no daily cap
     assert all(e.deck_id == blocks["tenses"].id for e in exs)
 
 
@@ -176,7 +175,7 @@ def test_build_exercise_session_due_first_ordering(db, blocks, make_profile):
     from datetime import datetime, timedelta, timezone
 
     now = datetime(2026, 7, 14, 12, 0, 0, tzinfo=timezone.utc)
-    profile = make_profile("ex-order", new_cards_per_day=10)
+    profile = make_profile("ex-order")
     ex_ids = db.scalars(
         select(Exercise.id).where(Exercise.deck_id == blocks["tenses"].id).order_by(Exercise.id)
     ).all()
@@ -190,12 +189,13 @@ def test_build_exercise_session_due_first_ordering(db, blocks, make_profile):
     assert exs[1].id == less
 
 
-def test_shared_budget_words_reduce_exercise_budget(db, blocks, make_profile):
-    """Words introduced today shrink the exercise new-item budget (shared pool)."""
+def test_words_introduced_today_do_not_reduce_new_exercises(db, blocks, make_profile):
+    """No shared cross-deck daily ceiling: words studied today don't shrink how many
+    new exercises a later same-day session can serve."""
     from datetime import datetime, timedelta, timezone
 
     now = datetime(2026, 7, 14, 12, 0, 0, tzinfo=timezone.utc)
-    profile = make_profile("shared-a", new_cards_per_day=5)
+    profile = make_profile("shared-a")
 
     # Introduce 3 words from the vocab block today.
     from app.models import Word
@@ -207,17 +207,16 @@ def test_shared_budget_words_reduce_exercise_budget(db, blocks, make_profile):
         db.add(CardState(profile_id=profile.id, word_id=wid, first_seen_at=now, due_at=now + timedelta(days=5)))
     db.commit()
 
-    assert new_cards_introduced_today(db, profile.id, now) == 3
     exs = build_exercise_session(db, profile, blocks["tenses"].id, limit=20, now=now)
-    assert len(exs) == 2  # budget 5 - 3 words used = 2 exercises
+    assert len(exs) == len(CONJ_ROWS)  # all 12 exercises, unaffected by words studied today
 
 
-def test_shared_budget_exercises_reduce_word_budget(db, blocks, make_profile):
-    """And the reverse: exercises introduced today shrink the word new-item budget."""
+def test_exercises_introduced_today_do_not_reduce_new_words(db, blocks, make_profile):
+    """And the reverse: exercises studied today don't shrink new words in a later session."""
     from datetime import datetime, timedelta, timezone
 
     now = datetime(2026, 7, 14, 12, 0, 0, tzinfo=timezone.utc)
-    profile = make_profile("shared-b", new_cards_per_day=5)
+    profile = make_profile("shared-b")
 
     ex_ids = db.scalars(
         select(Exercise.id).where(Exercise.deck_id == blocks["tenses"].id).order_by(Exercise.id).limit(4)
@@ -226,9 +225,8 @@ def test_shared_budget_exercises_reduce_word_budget(db, blocks, make_profile):
         db.add(ExerciseState(profile_id=profile.id, exercise_id=eid, first_seen_at=now, due_at=now + timedelta(days=5)))
     db.commit()
 
-    assert new_cards_introduced_today(db, profile.id, now) == 4
     words = build_session(db, profile, blocks["vocab"].id, limit=20, now=now)
-    assert len(words) == 1  # budget 5 - 4 exercises used = 1 word
+    assert len(words) == len(VOCAB_ROWS)  # all 8 vocab words, unaffected by exercises studied today
 
 
 def test_exercise_options_splits_on_semicolon(db, blocks):
@@ -409,41 +407,36 @@ def test_stats_hardest_ex_populated_after_lapse(db, blocks, make_client):
     assert ex.prompt in stats.text
 
 
-# --- 6. empty-budget redirect (regression) -------------------------------
+# --- 6. empty-session redirect (regression) ------------------------------
 #
-# Bug: the shared per-profile new-card budget is global across ALL decks. A user
-# who drains it on one deck then opens a never-touched second deck used to be
-# bounced all the way to /dashboard?empty=<id> (looked like "the block won't
-# open"). The fix keeps them on /blocks/<id>?empty=1 with a visible notice.
+# A deck with no due items and no new (never-seen) items left produces an empty
+# session. Rather than bouncing the user to /dashboard (looked like "the block
+# won't open"), they stay on /blocks/<id>?empty=1 with a visible notice.
 
 def _client_for(profile) -> TestClient:
-    """A TestClient authenticated as an existing profile (bypasses /profiles POST
-    so we can pre-set new_cards_per_day via make_profile)."""
+    """A TestClient authenticated as an existing profile (bypasses /profiles POST)."""
     c = TestClient(app)
     c.cookies.set("profile_id", str(profile.id))
     return c
 
 
-def _drain_budget_on_vocab(db, profile, deck, now):
-    """Consume the whole daily new-item budget by first-seeing `new_cards_per_day`
-    vocab words today (mirrors what a real study session would record)."""
-    wids = db.scalars(
-        select(Word.id).where(Word.deck_id == deck.id).order_by(Word.id).limit(profile.new_cards_per_day)
-    ).all()
-    assert len(wids) == profile.new_cards_per_day, "test vocab deck too small to drain budget"
-    for wid in wids:
-        db.add(CardState(profile_id=profile.id, word_id=wid, first_seen_at=now, due_at=now + timedelta(days=5)))
+def _exhaust_exercise_deck(db, profile, deck, now):
+    """Genuinely exhaust an exercise deck: mark every exercise already seen and not
+    yet due, so there are no due items and no new items left."""
+    ex_ids = db.scalars(select(Exercise.id).where(Exercise.deck_id == deck.id)).all()
+    assert ex_ids, "test exercise deck is empty"
+    for eid in ex_ids:
+        db.add(ExerciseState(profile_id=profile.id, exercise_id=eid, first_seen_at=now, due_at=now + timedelta(days=5)))
     db.commit()
 
 
-def test_exhausted_budget_redirects_to_block_not_dashboard(db, blocks, make_profile):
-    profile = make_profile("exhausted", new_cards_per_day=5)
+def test_exhausted_deck_redirects_to_block_not_dashboard(db, blocks, make_profile):
+    profile = make_profile("exhausted")
     now = datetime.now(timezone.utc)
-    _drain_budget_on_vocab(db, profile, blocks["vocab"], now)
-    assert new_cards_introduced_today(db, profile.id, now) == 5
+    _exhaust_exercise_deck(db, profile, blocks["tenses"], now)
 
     c = _client_for(profile)
-    # tenses deck is completely untouched: no due items + zero budget => empty session
+    # tenses deck fully studied: no due items + no new items => empty session
     r = c.post(
         "/study/start",
         data={"deck_id": blocks["tenses"].id, "mode": "typed"},
@@ -455,14 +448,14 @@ def test_exhausted_budget_redirects_to_block_not_dashboard(db, blocks, make_prof
     page = c.get(r.headers["location"])
     assert page.status_code == 200
     # distinctive substring, not exact copy, so wording tweaks don't break the test
-    assert "лимит новых карточек исчерпан" in page.text
+    assert "пока нет доступных карточек" in page.text
 
 
-def test_exhausted_budget_gap_deck_also_stays_on_block(db, blocks, make_profile):
+def test_exhausted_gap_deck_also_stays_on_block(db, blocks, make_profile):
     """Gap-fill blocks were the user's reported symptom (last in seed ordering)."""
-    profile = make_profile("exhausted-gap", new_cards_per_day=5)
+    profile = make_profile("exhausted-gap")
     now = datetime.now(timezone.utc)
-    _drain_budget_on_vocab(db, profile, blocks["vocab"], now)
+    _exhaust_exercise_deck(db, profile, blocks["gap"], now)
 
     c = _client_for(profile)
     r = c.post(
@@ -474,12 +467,35 @@ def test_exhausted_budget_gap_deck_also_stays_on_block(db, blocks, make_profile)
     assert r.headers["location"] == f"/blocks/{blocks['gap'].id}?empty=1"
 
 
+def test_unlimited_same_day_studying_across_decks(db, blocks, make_profile):
+    """The desired behavior: after fully studying one deck's new items today, a
+    never-touched deck still opens a real session with fresh new items — no
+    cross-deck daily ceiling."""
+    profile = make_profile("marathon")
+    now = datetime.now(timezone.utc)
+    # Study the entire vocab deck today (every word first-seen, not due again).
+    for wid in db.scalars(select(Word.id).where(Word.deck_id == blocks["vocab"].id)).all():
+        db.add(CardState(profile_id=profile.id, word_id=wid, first_seen_at=now, due_at=now + timedelta(days=5)))
+    db.commit()
+
+    c = _client_for(profile)
+    r = c.post(
+        "/study/start",
+        data={"deck_id": blocks["tenses"].id, "mode": "typed"},
+        follow_redirects=False,
+    )
+    assert r.status_code == 303
+    assert r.headers["location"].startswith("/study/")  # a real session, NOT an empty redirect
+    sid = r.headers["location"].rsplit("/", 1)[-1]
+    assert len(study._sessions[sid].queue) == len(CONJ_ROWS)  # got the full fresh batch
+
+
 def test_block_page_no_notice_without_empty_flag(db, blocks, make_client):
     """The notice must only render when ?empty=1 is present, not on a normal visit."""
     c = make_client("Alice")
     r = c.get(f"/blocks/{blocks['tenses'].id}")
     assert r.status_code == 200
-    assert "лимит новых карточек исчерпан" not in r.text
+    assert "пока нет доступных карточек" not in r.text
 
 
 # --- 7. full-deck walkthrough (content round-trip) -----------------------
@@ -527,8 +543,7 @@ def _walk_whole_deck(db, c, deck_id, mode) -> tuple[int, int]:
     ],
 )
 def test_full_deck_walkthrough_all_content_round_trips(db, blocks, make_profile, kind, expected_items):
-    # budget high enough to introduce every item in one session
-    profile = make_profile(f"walk-{kind}", new_cards_per_day=100)
+    profile = make_profile(f"walk-{kind}")
     c = _client_for(profile)
     answered, distinct = _walk_whole_deck(db, c, blocks[kind].id, "typed")
     # every item in the deck was served and answered exactly once (correct => no requeue)

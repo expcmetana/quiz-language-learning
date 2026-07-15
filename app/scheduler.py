@@ -1,33 +1,12 @@
-"""Builds study sessions: due cards first, then a daily allowance of new cards."""
+"""Builds study sessions: due cards first, then new cards up to the session size."""
 
 import random
-from datetime import datetime, time, timezone
+from datetime import datetime, timezone
 
-from sqlalchemy import func, select
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models import CardState, Exercise, ExerciseState, Profile, Word
-
-
-def start_of_today(now: datetime | None = None) -> datetime:
-    now = now or datetime.now(timezone.utc)
-    return datetime.combine(now.date(), time.min, tzinfo=timezone.utc)
-
-
-def new_cards_introduced_today(db: Session, profile_id: int, now: datetime | None = None) -> int:
-    """New items (words + exercises) first seen today — the daily budget is shared across both."""
-    start = start_of_today(now)
-    words = db.scalar(
-        select(func.count())
-        .select_from(CardState)
-        .where(CardState.profile_id == profile_id, CardState.first_seen_at >= start)
-    ) or 0
-    exercises = db.scalar(
-        select(func.count())
-        .select_from(ExerciseState)
-        .where(ExerciseState.profile_id == profile_id, ExerciseState.first_seen_at >= start)
-    ) or 0
-    return words + exercises
 
 
 def build_session(
@@ -54,8 +33,7 @@ def build_session(
 
     words = list(due_rows)
 
-    new_budget = max(0, profile.new_cards_per_day - new_cards_introduced_today(db, profile.id, now))
-    new_slots = min(new_budget, limit - len(words))
+    new_slots = limit - len(words)
     if new_slots > 0:
         seen = select(CardState.word_id).where(CardState.profile_id == profile.id)
         new_words = db.execute(
@@ -76,10 +54,7 @@ def build_exercise_session(
     limit: int,
     now: datetime | None = None,
 ) -> list[Exercise]:
-    """Return exercises to study: overdue first (most overdue first), topped up with new ones.
-
-    The new-item daily budget is shared with words (see new_cards_introduced_today).
-    """
+    """Return exercises to study: overdue first (most overdue first), topped up with new ones."""
     now = now or datetime.now(timezone.utc)
 
     due_rows = db.execute(
@@ -96,8 +71,7 @@ def build_exercise_session(
 
     exercises = list(due_rows)
 
-    new_budget = max(0, profile.new_cards_per_day - new_cards_introduced_today(db, profile.id, now))
-    new_slots = min(new_budget, limit - len(exercises))
+    new_slots = limit - len(exercises)
     if new_slots > 0:
         seen = select(ExerciseState.exercise_id).where(ExerciseState.profile_id == profile.id)
         new_exercises = db.execute(

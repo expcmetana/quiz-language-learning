@@ -15,7 +15,6 @@ class Profile(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(64), unique=True)
-    new_cards_per_day: Mapped[int] = mapped_column(Integer, default=10)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
     card_states: Mapped[list["CardState"]] = relationship(back_populates="profile", cascade="all, delete-orphan")

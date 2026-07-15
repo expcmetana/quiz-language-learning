@@ -31,7 +31,6 @@ sys.path.insert(0, str(_ROOT))
 _TMPDIR = tempfile.mkdtemp(prefix="quiz-test-")
 os.environ["DATABASE_PATH"] = str(Path(_TMPDIR) / "test.db")
 os.environ["SEED_CSV"] = str(_ROOT / "seed" / "es_ru_basic.csv")
-os.environ["NEW_CARDS_PER_DAY"] = "10"
 os.environ["SESSION_SIZE"] = "20"
 # -------------------------------------------------------------------------
 
@@ -121,8 +120,8 @@ def make_deck(db):
 
 @pytest.fixture
 def make_profile(db):
-    def _make(name: str = "tester", new_cards_per_day: int = 10) -> Profile:
-        p = Profile(name=name, new_cards_per_day=new_cards_per_day)
+    def _make(name: str = "tester") -> Profile:
+        p = Profile(name=name)
         db.add(p)
         db.commit()
         db.refresh(p)

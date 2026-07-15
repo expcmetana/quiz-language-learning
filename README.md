@@ -11,7 +11,7 @@ A local, self-hosted Spanish → Russian language trainer with SM-2 spaced repet
 - **Study modes**: flashcards (self-graded), multiple choice, typed answer
   (typo-tolerant), match pairs — grammar blocks use choice/typed
 - **Multiple local profiles** (Netflix-style picker, no passwords) with independent
-  SM-2 progress per word and per exercise, shared daily new-item budget
+  SM-2 progress per word and per exercise
 - **Custom decks**: create your own, CSV import/export (`es,ru,example`)
 - **Stats**: reviews per day, accuracy by mode, hardest words/exercises
 
@@ -74,7 +74,6 @@ mkdir -p ~/.quiz-language-learning && cp ./data/app.db ~/.quiz-language-learning
 | --- | --- | --- |
 | `DATABASE_PATH` | `/data/app.db` (in container); `~/.quiz-language-learning/app.db` (bare local dev) | SQLite file location |
 | `QUIZ_DATA_DIR` | `~/.quiz-language-learning` | (docker-compose only) host directory bind-mounted to `/data` |
-| `NEW_CARDS_PER_DAY` | `10` | Daily budget of new items per profile |
 | `SESSION_SIZE` | `20` | Max cards per study session |
 | `SEED_DIR` | `./seed` | Directory with `blocks.json` + content CSVs |
 
