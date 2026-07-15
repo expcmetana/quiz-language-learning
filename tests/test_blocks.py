@@ -11,11 +11,14 @@ the exact same code path as production startup.
 """
 
 import json
+from datetime import datetime, timedelta, timezone
 
 import pytest
+from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 
-from app.models import CardState, Deck, Exercise, ExerciseState, ReviewLog
+from app.main import app
+from app.models import CardState, Deck, Exercise, ExerciseState, ReviewLog, Word
 from app.routers import study
 from app.scheduler import (
     build_exercise_session,
@@ -404,3 +407,130 @@ def test_stats_hardest_ex_populated_after_lapse(db, blocks, make_client):
     assert stats.status_code == 200
     assert "Сложные упражнения" in stats.text  # hardest_ex section rendered
     assert ex.prompt in stats.text
+
+
+# --- 6. empty-budget redirect (regression) -------------------------------
+#
+# Bug: the shared per-profile new-card budget is global across ALL decks. A user
+# who drains it on one deck then opens a never-touched second deck used to be
+# bounced all the way to /dashboard?empty=<id> (looked like "the block won't
+# open"). The fix keeps them on /blocks/<id>?empty=1 with a visible notice.
+
+def _client_for(profile) -> TestClient:
+    """A TestClient authenticated as an existing profile (bypasses /profiles POST
+    so we can pre-set new_cards_per_day via make_profile)."""
+    c = TestClient(app)
+    c.cookies.set("profile_id", str(profile.id))
+    return c
+
+
+def _drain_budget_on_vocab(db, profile, deck, now):
+    """Consume the whole daily new-item budget by first-seeing `new_cards_per_day`
+    vocab words today (mirrors what a real study session would record)."""
+    wids = db.scalars(
+        select(Word.id).where(Word.deck_id == deck.id).order_by(Word.id).limit(profile.new_cards_per_day)
+    ).all()
+    assert len(wids) == profile.new_cards_per_day, "test vocab deck too small to drain budget"
+    for wid in wids:
+        db.add(CardState(profile_id=profile.id, word_id=wid, first_seen_at=now, due_at=now + timedelta(days=5)))
+    db.commit()
+
+
+def test_exhausted_budget_redirects_to_block_not_dashboard(db, blocks, make_profile):
+    profile = make_profile("exhausted", new_cards_per_day=5)
+    now = datetime.now(timezone.utc)
+    _drain_budget_on_vocab(db, profile, blocks["vocab"], now)
+    assert new_cards_introduced_today(db, profile.id, now) == 5
+
+    c = _client_for(profile)
+    # tenses deck is completely untouched: no due items + zero budget => empty session
+    r = c.post(
+        "/study/start",
+        data={"deck_id": blocks["tenses"].id, "mode": "typed"},
+        follow_redirects=False,
+    )
+    assert r.status_code == 303
+    assert r.headers["location"] == f"/blocks/{blocks['tenses'].id}?empty=1"  # NOT /dashboard
+
+    page = c.get(r.headers["location"])
+    assert page.status_code == 200
+    # distinctive substring, not exact copy, so wording tweaks don't break the test
+    assert "лимит новых карточек исчерпан" in page.text
+
+
+def test_exhausted_budget_gap_deck_also_stays_on_block(db, blocks, make_profile):
+    """Gap-fill blocks were the user's reported symptom (last in seed ordering)."""
+    profile = make_profile("exhausted-gap", new_cards_per_day=5)
+    now = datetime.now(timezone.utc)
+    _drain_budget_on_vocab(db, profile, blocks["vocab"], now)
+
+    c = _client_for(profile)
+    r = c.post(
+        "/study/start",
+        data={"deck_id": blocks["gap"].id, "mode": "choice"},
+        follow_redirects=False,
+    )
+    assert r.status_code == 303
+    assert r.headers["location"] == f"/blocks/{blocks['gap'].id}?empty=1"
+
+
+def test_block_page_no_notice_without_empty_flag(db, blocks, make_client):
+    """The notice must only render when ?empty=1 is present, not on a normal visit."""
+    c = make_client("Alice")
+    r = c.get(f"/blocks/{blocks['tenses'].id}")
+    assert r.status_code == 200
+    assert "лимит новых карточек исчерпан" not in r.text
+
+
+# --- 7. full-deck walkthrough (content round-trip) -----------------------
+#
+# Drives an ENTIRE deck end-to-end (start -> loop card/answer until summary),
+# asserting every response is 200. Defends against a bad CSV row silently
+# breaking a deck mid-way, which a single-card smoke test would miss.
+
+def _answer_for(db, sess):
+    item = db.get(Exercise if sess.item_kind == "exercise" else Word, sess.queue[sess.index])
+    return item.answer if sess.item_kind == "exercise" else item.ru
+
+
+def _walk_whole_deck(db, c, deck_id, mode) -> tuple[int, int]:
+    """Start a session and answer every card correctly until the summary renders.
+    Returns (cards_answered, distinct_items). Asserts 200 on every hop."""
+    r = c.post("/study/start", data={"deck_id": deck_id, "mode": mode}, follow_redirects=False)
+    assert r.status_code == 303, r.text
+    loc = r.headers["location"]
+    assert loc.startswith("/study/"), loc  # a real session, not an empty-redirect
+    sid = loc.rsplit("/", 1)[-1]
+    assert c.get(f"/study/{sid}").status_code == 200
+
+    answered = 0
+    seen_items: set[int] = set()
+    for _ in range(500):  # generous bound; correct answers never requeue
+        card = c.get(f"/study/{sid}/card")
+        assert card.status_code == 200
+        if "Сессия завершена" in card.text:
+            return answered, len(seen_items)
+        sess = study._sessions[sid]
+        seen_items.add(sess.queue[sess.index])
+        resp = c.post(f"/study/{sid}/answer", data={"answer": _answer_for(db, sess)})
+        assert resp.status_code == 200, resp.text
+        answered += 1
+    raise AssertionError("deck walkthrough did not terminate")
+
+
+@pytest.mark.parametrize(
+    "kind,expected_items",
+    [
+        ("vocab", len(VOCAB_ROWS)),
+        ("tenses", len(CONJ_ROWS)),
+        ("gap", len(GAP_ROWS)),
+    ],
+)
+def test_full_deck_walkthrough_all_content_round_trips(db, blocks, make_profile, kind, expected_items):
+    # budget high enough to introduce every item in one session
+    profile = make_profile(f"walk-{kind}", new_cards_per_day=100)
+    c = _client_for(profile)
+    answered, distinct = _walk_whole_deck(db, c, blocks[kind].id, "typed")
+    # every item in the deck was served and answered exactly once (correct => no requeue)
+    assert distinct == expected_items
+    assert answered == expected_items

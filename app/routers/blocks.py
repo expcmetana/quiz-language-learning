@@ -11,7 +11,9 @@ router = APIRouter(prefix="/blocks")
 
 
 @router.get("/{deck_id}")
-def block_detail(deck_id: int, request: Request, db: DbSession, profile: CurrentProfile):
+def block_detail(
+    deck_id: int, request: Request, db: DbSession, profile: CurrentProfile, empty: str | None = None
+):
     deck = db.get(Deck, deck_id)
     if deck is None:
         raise HTTPException(404, "Block not found")
@@ -28,5 +30,6 @@ def block_detail(deck_id: int, request: Request, db: DbSession, profile: Current
             "started": stats["started"],
             "due": stats["due"],
             "modes": modes,
+            "empty": bool(empty),
         },
     )

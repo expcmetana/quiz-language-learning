@@ -26,10 +26,6 @@
 {% block content %}
 <h1>Обзор</h1>
 
-{% if request.query_params.get('empty') %}
-  <div class="notice warn">Нет карточек к повторению и новых карточек в этом блоке.</div>
-{% endif %}
-
 <p class="muted">Повторений сегодня: <strong>{{ reviews_today }}</strong></p>
 
 {% if blocks %}

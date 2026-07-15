@@ -154,7 +154,7 @@ def start_session(db: DbSession, profile: CurrentProfile, deck_id: int = Form(..
         item_kind = "exercise"
         items = build_exercise_session(db, profile, deck_id, settings.session_size)
     if not items:
-        return RedirectResponse(f"/dashboard?empty={deck_id}", status_code=303)
+        return RedirectResponse(f"/blocks/{deck_id}?empty=1", status_code=303)
     if mode == "match":
         items = items[:MATCH_PAIRS]
     sess = StudySession(
