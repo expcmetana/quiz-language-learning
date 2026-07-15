@@ -15,6 +15,14 @@ A local, self-hosted Spanish → Russian language trainer with SM-2 spaced repet
 - **Custom decks**: create your own, CSV import/export (`es,ru,example`)
 - **Stats**: reviews per day, accuracy by mode, hardest words/exercises
 
+## Data safety
+
+This application must never move, rename, delete, or silently overwrite the
+user's data file. The only operations permitted on the data file are:
+reading/writing application data through normal use, and in-place Alembic
+schema migrations. Any change to where or how data is stored must be
+additive and backward-compatible — never a destructive default.
+
 ## Quick start (Docker)
 
 ```bash
@@ -27,26 +35,45 @@ The app is served at <http://localhost:8000>.
 
 All user data (profiles, progress, custom decks) lives in a single SQLite database
 **outside** the image and is connected at container launch via a volume mount.
-The default `docker-compose.yml` maps host `./data` → container `/data`
-(database file `/data/app.db`):
+The default `docker-compose.yml` maps host `~/.quiz-language-learning` → container
+`/data` (database file `/data/app.db`):
 
 ```yaml
 volumes:
-  - ./data:/data
+  - ${QUIZ_DATA_DIR:-${HOME}/.quiz-language-learning}:/data
 ```
 
-Point it at any host path or named volume to relocate the data. The `data/`
-directory is git-ignored — user data never enters the repository or the image.
+Override the location with the `QUIZ_DATA_DIR` env var, e.g.
+`QUIZ_DATA_DIR=/mnt/backups/quiz docker compose up`. Point it at any host path
+or named volume to relocate the data.
+
+The container self-heals ownership of `/data` on every start — the entrypoint
+runs as root just long enough to `chown` the mount (which Docker may have
+auto-created as root if it didn't already exist) before dropping privileges
+to the app user. No manual `mkdir`/`chown` is ever required, regardless of
+whether the host directory pre-existed, was deleted, or was freshly
+auto-created by Docker.
+
 Migrations run automatically on startup, so upgrading the image keeps existing data.
 
-Back up by copying `data/app.db` (stop the container first, or also copy the
-`-wal`/`-shm` sidecar files).
+Back up by copying `app.db` from the data directory (stop the container first,
+or also copy the `-wal`/`-shm` sidecar files).
+
+**Upgrading from a version that used `./data/app.db`**: that path is no longer
+read by default. Manually copy your existing data to the new location — this
+is not done automatically, since automatic file moves are exactly the risk
+the [Data safety](#data-safety) policy above guards against:
+
+```bash
+mkdir -p ~/.quiz-language-learning && cp ./data/app.db ~/.quiz-language-learning/
+```
 
 ## Configuration
 
 | Env var | Default | Meaning |
 | --- | --- | --- |
-| `DATABASE_PATH` | `/data/app.db` (in container) | SQLite file location |
+| `DATABASE_PATH` | `/data/app.db` (in container); `~/.quiz-language-learning/app.db` (bare local dev) | SQLite file location |
+| `QUIZ_DATA_DIR` | `~/.quiz-language-learning` | (docker-compose only) host directory bind-mounted to `/data` |
 | `NEW_CARDS_PER_DAY` | `10` | Daily budget of new items per profile |
 | `SESSION_SIZE` | `20` | Max cards per study session |
 | `SEED_DIR` | `./seed` | Directory with `blocks.json` + content CSVs |

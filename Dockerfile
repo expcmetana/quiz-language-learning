@@ -25,8 +25,9 @@ RUN groupadd --gid 1000 appuser && useradd --uid 1000 --gid appuser --create-hom
     && mkdir -p /data \
     && chown -R appuser:appuser /app /data
 
-USER appuser
-
+# Stay root at container start: the entrypoint fixes ownership of whatever is
+# bind-mounted at /data (which Docker may auto-create as root) before dropping
+# privileges to appuser itself.
 VOLUME ["/data"]
 EXPOSE 8000
 

@@ -4,5 +4,5 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./data:/data
+      - ${QUIZ_DATA_DIR:-${HOME}/.quiz-language-learning}:/data
     restart: unless-stopped
