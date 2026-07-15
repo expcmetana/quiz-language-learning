@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Статистика{% endblock %}
+{% block content %}
+<h1>Статистика</h1>
+
+<h2>Повторения за 30 дней <span class="muted small">(всего {{ total_reviews }})</span></h2>
+<div class="barchart">
+  {% for d in per_day %}
+    <div class="bar {{ 'empty' if d.count == 0 }}"
+         style="height: {{ (100 * d.count / max_count) if max_count else 0 }}%;"
+         title="{{ d.date.isoformat() }}: {{ d.count }} повт., точность {{ (100 * d.accuracy) | round | int }}%"></div>
+  {% endfor %}
+</div>
+<p class="muted small">{{ per_day[0].date.strftime('%d.%m') }} — {{ per_day[-1].date.strftime('%d.%m') }}</p>
+
+<h2>Точность по режимам</h2>
+{% if by_mode %}
+<div class="table-wrap card" style="padding:0.5rem;">
+  <table>
+    <thead><tr><th>Режим</th><th>Ответов</th><th>Точность</th></tr></thead>
+    <tbody>
+      {% for m in by_mode %}
+        <tr>
+          <td>{{ m.label }}</td>
+          <td>{{ m.count }}</td>
+          <td>{{ (100 * m.accuracy) | round | int }}%</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+  <p class="muted">Пока нет данных.</p>
+{% endif %}
+
+<div class="hardest-cols">
+  <div>
+    <h2>Самые трудные слова</h2>
+    {% if hardest %}
+    <div class="table-wrap card" style="padding:0.5rem;">
+      <table>
+        <thead><tr><th>ES</th><th>RU</th><th>Провалов</th></tr></thead>
+        <tbody>
+          {% for h in hardest %}
+            <tr>
+              <td>{{ h.word.es }}</td>
+              <td>{{ h.word.ru }}</td>
+              <td><span class="badge due">{{ h.lapses }}</span></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+      <p class="muted">Пока нет провалов — отлично!</p>
+    {% endif %}
+  </div>
+
+  {% if hardest_ex %}
+  <div>
+    <h2>Сложные упражнения</h2>
+    <div class="table-wrap card" style="padding:0.5rem;">
+      <table>
+        <thead><tr><th>Задание</th><th>Ответ</th><th>Провалов</th></tr></thead>
+        <tbody>
+          {% for h in hardest_ex %}
+            <tr>
+              <td>{{ h.exercise.prompt }}</td>
+              <td>{{ h.exercise.answer }}</td>
+              <td><span class="badge due">{{ h.lapses }}</span></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

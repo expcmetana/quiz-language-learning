@@ -1,0 +1,10 @@
+<div class="pos">{{ position }} / {{ total }}</div>
+<div class="flashcard" style="min-height:auto;">
+  <div class="ex-prompt">{{ exercise.prompt }}</div>
+  {% if exercise.hint %}<div class="ex-hint muted small">{{ exercise.hint }}</div>{% endif %}
+</div>
+<form class="row" style="margin-top:1.25rem;"
+      hx-post="/study/{{ sess.id }}/answer" hx-target="#card" hx-swap="innerHTML">
+  <input name="answer" placeholder="Ваш ответ" autocomplete="off" autofocus style="flex:1;">
+  <button class="primary">Проверить</button>
+</form>

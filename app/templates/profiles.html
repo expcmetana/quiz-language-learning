@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Профили{% endblock %}
+{% block content %}
+<h1>Кто занимается?</h1>
+
+<div class="profiles-grid">
+  {% for p in profiles %}
+    <div class="profile-tile">
+      <form method="post" action="/profiles/{{ p.id }}/select">
+        <button>
+          <span class="avatar">{{ p.name[0] | upper }}</span>
+          {{ p.name }}
+        </button>
+      </form>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="card" style="max-width:420px;">
+  <h2 style="margin-top:0;">Новый профиль</h2>
+  <form method="post" action="/profiles" class="row">
+    <input name="name" placeholder="Имя" required maxlength="64" style="flex:1;">
+    <button class="primary">Создать</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,151 @@
+verb,tense,person,answer,choices,hint
+hablar,Futuro simple,yo,hablaré,hablarás;hablará;hablaremos,я поговорю
+hablar,Futuro simple,tú,hablarás,hablará;hablaremos;hablaréis,ты поговоришь
+hablar,Futuro simple,él/ella,hablará,hablaremos;hablaréis;hablarán,он/она поговорит
+hablar,Futuro simple,nosotros,hablaremos,hablaréis;hablarán;hablaré,мы поговорим
+hablar,Futuro simple,vosotros,hablaréis,hablarán;hablaré;hablarás,вы поговорите
+hablar,Futuro simple,ellos/ellas,hablarán,hablaré;hablarás;hablará,они поговорят
+comer,Futuro simple,yo,comeré,comerás;comerá;comeremos,я поем
+comer,Futuro simple,tú,comerás,comerá;comeremos;comeréis,ты поешь
+comer,Futuro simple,él/ella,comerá,comeremos;comeréis;comerán,он/она поест
+comer,Futuro simple,nosotros,comeremos,comeréis;comerán;comeré,мы поедим
+comer,Futuro simple,vosotros,comeréis,comerán;comeré;comerás,вы поедите
+comer,Futuro simple,ellos/ellas,comerán,comeré;comerás;comerá,они поедят
+vivir,Futuro simple,yo,viviré,vivirás;vivirá;viviremos,я буду жить
+vivir,Futuro simple,tú,vivirás,vivirá;viviremos;viviréis,ты будешь жить
+vivir,Futuro simple,él/ella,vivirá,viviremos;viviréis;vivirán,он/она будет жить
+vivir,Futuro simple,nosotros,viviremos,viviréis;vivirán;viviré,мы будем жить
+vivir,Futuro simple,vosotros,viviréis,vivirán;viviré;vivirás,вы будете жить
+vivir,Futuro simple,ellos/ellas,vivirán,viviré;vivirás;vivirá,они будут жить
+tener,Futuro simple,yo,tendré,tendrás;tendrá;tendremos,я буду иметь
+tener,Futuro simple,tú,tendrás,tendrá;tendremos;tendréis,ты будешь иметь
+tener,Futuro simple,él/ella,tendrá,tendremos;tendréis;tendrán,он/она будет иметь
+tener,Futuro simple,nosotros,tendremos,tendréis;tendrán;tendré,мы будем иметь
+tener,Futuro simple,vosotros,tendréis,tendrán;tendré;tendrás,вы будете иметь
+tener,Futuro simple,ellos/ellas,tendrán,tendré;tendrás;tendrá,они будут иметь
+poder,Futuro simple,yo,podré,podrás;podrá;podremos,я смогу
+poder,Futuro simple,tú,podrás,podrá;podremos;podréis,ты сможешь
+poder,Futuro simple,él/ella,podrá,podremos;podréis;podrán,он/она сможет
+poder,Futuro simple,nosotros,podremos,podréis;podrán;podré,мы сможем
+poder,Futuro simple,vosotros,podréis,podrán;podré;podrás,вы сможете
+poder,Futuro simple,ellos/ellas,podrán,podré;podrás;podrá,они смогут
+hacer,Futuro simple,yo,haré,harás;hará;haremos,я сделаю
+hacer,Futuro simple,tú,harás,hará;haremos;haréis,ты сделаешь
+hacer,Futuro simple,él/ella,hará,haremos;haréis;harán,он/она сделает
+hacer,Futuro simple,nosotros,haremos,haréis;harán;haré,мы сделаем
+hacer,Futuro simple,vosotros,haréis,harán;haré;harás,вы сделаете
+hacer,Futuro simple,ellos/ellas,harán,haré;harás;hará,они сделают
+decir,Futuro simple,yo,diré,dirás;dirá;diremos,я скажу
+decir,Futuro simple,tú,dirás,dirá;diremos;diréis,ты скажешь
+decir,Futuro simple,él/ella,dirá,diremos;diréis;dirán,он/она скажет
+decir,Futuro simple,nosotros,diremos,diréis;dirán;diré,мы скажем
+decir,Futuro simple,vosotros,diréis,dirán;diré;dirás,вы скажете
+decir,Futuro simple,ellos/ellas,dirán,diré;dirás;dirá,они скажут
+salir,Futuro simple,yo,saldré,saldrás;saldrá;saldremos,я выйду
+salir,Futuro simple,tú,saldrás,saldrá;saldremos;saldréis,ты выйдешь
+salir,Futuro simple,él/ella,saldrá,saldremos;saldréis;saldrán,он/она выйдет
+salir,Futuro simple,nosotros,saldremos,saldréis;saldrán;saldré,мы выйдем
+salir,Futuro simple,vosotros,saldréis,saldrán;saldré;saldrás,вы выйдете
+salir,Futuro simple,ellos/ellas,saldrán,saldré;saldrás;saldrá,они выйдут
+hablar,Condicional,yo,hablaría,hablarías;hablaríamos;hablaríais,я бы поговорил(а)
+hablar,Condicional,tú,hablarías,hablaría;hablaríamos;hablaríais,ты бы поговорил(а)
+hablar,Condicional,él/ella,hablaría,hablaríamos;hablaríais;hablarían,он/она бы поговорил(а)
+hablar,Condicional,nosotros,hablaríamos,hablaríais;hablarían;hablaría,мы бы поговорили
+hablar,Condicional,vosotros,hablaríais,hablarían;hablaría;hablarías,вы бы поговорили
+hablar,Condicional,ellos/ellas,hablarían,hablaría;hablarías;hablaríamos,они бы поговорили
+comer,Condicional,yo,comería,comerías;comeríamos;comeríais,я бы поел(а)
+comer,Condicional,tú,comerías,comería;comeríamos;comeríais,ты бы поел(а)
+comer,Condicional,él/ella,comería,comeríamos;comeríais;comerían,он/она бы поел(а)
+comer,Condicional,nosotros,comeríamos,comeríais;comerían;comería,мы бы поели
+comer,Condicional,vosotros,comeríais,comerían;comería;comerías,вы бы поели
+comer,Condicional,ellos/ellas,comerían,comería;comerías;comeríamos,они бы поели
+vivir,Condicional,yo,viviría,vivirías;viviríamos;viviríais,я бы жил(а)
+vivir,Condicional,tú,vivirías,viviría;viviríamos;viviríais,ты бы жил(а)
+vivir,Condicional,él/ella,viviría,viviríamos;viviríais;vivirían,он/она бы жил(а)
+vivir,Condicional,nosotros,viviríamos,viviríais;vivirían;viviría,мы бы жили
+vivir,Condicional,vosotros,viviríais,vivirían;viviría;vivirías,вы бы жили
+vivir,Condicional,ellos/ellas,vivirían,viviría;vivirías;viviríamos,они бы жили
+tener,Condicional,yo,tendría,tendrías;tendríamos;tendríais,я бы имел(а)
+tener,Condicional,tú,tendrías,tendría;tendríamos;tendríais,ты бы имел(а)
+tener,Condicional,él/ella,tendría,tendríamos;tendríais;tendrían,он/она бы имел(а)
+tener,Condicional,nosotros,tendríamos,tendríais;tendrían;tendría,мы бы имели
+tener,Condicional,vosotros,tendríais,tendrían;tendría;tendrías,вы бы имели
+tener,Condicional,ellos/ellas,tendrían,tendría;tendrías;tendríamos,они бы имели
+poder,Condicional,yo,podría,podrías;podríamos;podríais,я бы смог(ла)
+poder,Condicional,tú,podrías,podría;podríamos;podríais,ты бы смог(ла)
+poder,Condicional,él/ella,podría,podríamos;podríais;podrían,он/она бы смог(ла)
+poder,Condicional,nosotros,podríamos,podríais;podrían;podría,мы бы смогли
+poder,Condicional,vosotros,podríais,podrían;podría;podrías,вы бы смогли
+poder,Condicional,ellos/ellas,podrían,podría;podrías;podríamos,они бы смогли
+hacer,Condicional,yo,haría,harías;haríamos;haríais,я бы сделал(а)
+hacer,Condicional,tú,harías,haría;haríamos;haríais,ты бы сделал(а)
+hacer,Condicional,él/ella,haría,haríamos;haríais;harían,он/она бы сделал(а)
+hacer,Condicional,nosotros,haríamos,haríais;harían;haría,мы бы сделали
+hacer,Condicional,vosotros,haríais,harían;haría;harías,вы бы сделали
+hacer,Condicional,ellos/ellas,harían,haría;harías;haríamos,они бы сделали
+decir,Condicional,yo,diría,dirías;diríamos;diríais,я бы сказал(а)
+decir,Condicional,tú,dirías,diría;diríamos;diríais,ты бы сказал(а)
+decir,Condicional,él/ella,diría,diríamos;diríais;dirían,он/она бы сказал(а)
+decir,Condicional,nosotros,diríamos,diríais;dirían;diría,мы бы сказали
+decir,Condicional,vosotros,diríais,dirían;diría;dirías,вы бы сказали
+decir,Condicional,ellos/ellas,dirían,diría;dirías;diríamos,они бы сказали
+salir,Condicional,yo,saldría,saldrías;saldríamos;saldríais,я бы вышел/вышла
+salir,Condicional,tú,saldrías,saldría;saldríamos;saldríais,ты бы вышел/вышла
+salir,Condicional,él/ella,saldría,saldríamos;saldríais;saldrían,он/она бы вышел/вышла
+salir,Condicional,nosotros,saldríamos,saldríais;saldrían;saldría,мы бы вышли
+salir,Condicional,vosotros,saldríais,saldrían;saldría;saldrías,вы бы вышли
+salir,Condicional,ellos/ellas,saldrían,saldría;saldrías;saldríamos,они бы вышли
+hablar,Pretérito perfecto,yo,he hablado,has hablado;ha hablado;hemos hablado,я поговорил(а)
+hablar,Pretérito perfecto,tú,has hablado,ha hablado;hemos hablado;habéis hablado,ты поговорил(а)
+hablar,Pretérito perfecto,él/ella,ha hablado,hemos hablado;habéis hablado;han hablado,он/она поговорил(а)
+hablar,Pretérito perfecto,nosotros,hemos hablado,habéis hablado;han hablado;he hablado,мы поговорили
+hablar,Pretérito perfecto,vosotros,habéis hablado,han hablado;he hablado;has hablado,вы поговорили
+hablar,Pretérito perfecto,ellos/ellas,han hablado,he hablado;has hablado;ha hablado,они поговорили
+comer,Pretérito perfecto,yo,he comido,has comido;ha comido;hemos comido,я поел(а)
+comer,Pretérito perfecto,tú,has comido,ha comido;hemos comido;habéis comido,ты поел(а)
+comer,Pretérito perfecto,él/ella,ha comido,hemos comido;habéis comido;han comido,он/она поел(а)
+comer,Pretérito perfecto,nosotros,hemos comido,habéis comido;han comido;he comido,мы поели
+comer,Pretérito perfecto,vosotros,habéis comido,han comido;he comido;has comido,вы поели
+comer,Pretérito perfecto,ellos/ellas,han comido,he comido;has comido;ha comido,они поели
+vivir,Pretérito perfecto,yo,he vivido,has vivido;ha vivido;hemos vivido,я прожил(а)
+vivir,Pretérito perfecto,tú,has vivido,ha vivido;hemos vivido;habéis vivido,ты прожил(а)
+vivir,Pretérito perfecto,él/ella,ha vivido,hemos vivido;habéis vivido;han vivido,он/она прожил(а)
+vivir,Pretérito perfecto,nosotros,hemos vivido,habéis vivido;han vivido;he vivido,мы прожили
+vivir,Pretérito perfecto,vosotros,habéis vivido,han vivido;he vivido;has vivido,вы прожили
+vivir,Pretérito perfecto,ellos/ellas,han vivido,he vivido;has vivido;ha vivido,они прожили
+hacer,Pretérito perfecto,yo,he hecho,has hecho;ha hecho;hemos hecho,я сделал(а)
+hacer,Pretérito perfecto,tú,has hecho,ha hecho;hemos hecho;habéis hecho,ты сделал(а)
+hacer,Pretérito perfecto,él/ella,ha hecho,hemos hecho;habéis hecho;han hecho,он/она сделал(а)
+hacer,Pretérito perfecto,nosotros,hemos hecho,habéis hecho;han hecho;he hecho,мы сделали
+hacer,Pretérito perfecto,vosotros,habéis hecho,han hecho;he hecho;has hecho,вы сделали
+hacer,Pretérito perfecto,ellos/ellas,han hecho,he hecho;has hecho;ha hecho,они сделали
+escribir,Pretérito perfecto,yo,he escrito,has escrito;ha escrito;hemos escrito,я написал(а)
+escribir,Pretérito perfecto,tú,has escrito,ha escrito;hemos escrito;habéis escrito,ты написал(а)
+escribir,Pretérito perfecto,él/ella,ha escrito,hemos escrito;habéis escrito;han escrito,он/она написал(а)
+escribir,Pretérito perfecto,nosotros,hemos escrito,habéis escrito;han escrito;he escrito,мы написали
+escribir,Pretérito perfecto,vosotros,habéis escrito,han escrito;he escrito;has escrito,вы написали
+escribir,Pretérito perfecto,ellos/ellas,han escrito,he escrito;has escrito;ha escrito,они написали
+poner,Pretérito perfecto,yo,he puesto,has puesto;ha puesto;hemos puesto,я положил(а)
+poner,Pretérito perfecto,tú,has puesto,ha puesto;hemos puesto;habéis puesto,ты положил(а)
+poner,Pretérito perfecto,él/ella,ha puesto,hemos puesto;habéis puesto;han puesto,он/она положил(а)
+poner,Pretérito perfecto,nosotros,hemos puesto,habéis puesto;han puesto;he puesto,мы положили
+poner,Pretérito perfecto,vosotros,habéis puesto,han puesto;he puesto;has puesto,вы положили
+poner,Pretérito perfecto,ellos/ellas,han puesto,he puesto;has puesto;ha puesto,они положили
+ver,Pretérito perfecto,yo,he visto,has visto;ha visto;hemos visto,я увидел(а)
+ver,Pretérito perfecto,tú,has visto,ha visto;hemos visto;habéis visto,ты увидел(а)
+ver,Pretérito perfecto,él/ella,ha visto,hemos visto;habéis visto;han visto,он/она увидел(а)
+ver,Pretérito perfecto,nosotros,hemos visto,habéis visto;han visto;he visto,мы увидели
+ver,Pretérito perfecto,vosotros,habéis visto,han visto;he visto;has visto,вы увидели
+ver,Pretérito perfecto,ellos/ellas,han visto,he visto;has visto;ha visto,они увидели
+decir,Pretérito perfecto,yo,he dicho,has dicho;ha dicho;hemos dicho,я сказал(а)
+decir,Pretérito perfecto,tú,has dicho,ha dicho;hemos dicho;habéis dicho,ты сказал(а)
+decir,Pretérito perfecto,él/ella,ha dicho,hemos dicho;habéis dicho;han dicho,он/она сказал(а)
+decir,Pretérito perfecto,nosotros,hemos dicho,habéis dicho;han dicho;he dicho,мы сказали
+decir,Pretérito perfecto,vosotros,habéis dicho,han dicho;he dicho;has dicho,вы сказали
+decir,Pretérito perfecto,ellos/ellas,han dicho,he dicho;has dicho;ha dicho,они сказали
+volver,Pretérito perfecto,yo,he vuelto,has vuelto;ha vuelto;hemos vuelto,я вернулся/вернулась
+volver,Pretérito perfecto,tú,has vuelto,ha vuelto;hemos vuelto;habéis vuelto,ты вернулся/вернулась
+volver,Pretérito perfecto,él/ella,ha vuelto,hemos vuelto;habéis vuelto;han vuelto,он/она вернулся/вернулась
+volver,Pretérito perfecto,nosotros,hemos vuelto,habéis vuelto;han vuelto;he vuelto,мы вернулись
+volver,Pretérito perfecto,vosotros,habéis vuelto,han vuelto;he vuelto;has vuelto,вы вернулись
+volver,Pretérito perfecto,ellos/ellas,han vuelto,he vuelto;has vuelto;ha vuelto,они вернулись

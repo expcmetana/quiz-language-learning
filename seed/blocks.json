@@ -1,0 +1,93 @@
+[
+  {
+    "name": "Базовый набор",
+    "kind": "vocab",
+    "level": null,
+    "file": "es_ru_basic.csv",
+    "description": "Стартовая тематическая колода"
+  },
+  {
+    "name": "Топ-1000: уровень A1",
+    "kind": "vocab",
+    "level": "A1",
+    "file": "words_a1.csv",
+    "description": "Самые частотные слова для начинающих"
+  },
+  {
+    "name": "Топ-1000: уровень A2",
+    "kind": "vocab",
+    "level": "A2",
+    "file": "words_a2.csv",
+    "description": "Частотная лексика базового уровня"
+  },
+  {
+    "name": "Топ-1000: уровень B1",
+    "kind": "vocab",
+    "level": "B1",
+    "file": "words_b1.csv",
+    "description": "Лексика среднего уровня из топ-1000"
+  },
+  {
+    "name": "Топ-1000: уровень B2",
+    "kind": "vocab",
+    "level": "B2",
+    "file": "words_b2.csv",
+    "description": "Продвинутая лексика из топ-1000"
+  },
+  {
+    "name": "Спряжение: Presente (A1)",
+    "kind": "tenses",
+    "level": "A1",
+    "file": "conj_a1.csv",
+    "description": "Настоящее время: правильные глаголы и ключевые исключения"
+  },
+  {
+    "name": "Спряжение: прошедшие времена (A2)",
+    "kind": "tenses",
+    "level": "A2",
+    "file": "conj_a2.csv",
+    "description": "Pretérito indefinido и imperfecto, включая неправильные формы"
+  },
+  {
+    "name": "Спряжение: futuro y condicional (B1)",
+    "kind": "tenses",
+    "level": "B1",
+    "file": "conj_b1.csv",
+    "description": "Будущее время, условное наклонение и pretérito perfecto"
+  },
+  {
+    "name": "Спряжение: subjuntivo e imperativo (B2)",
+    "kind": "tenses",
+    "level": "B2",
+    "file": "conj_b2.csv",
+    "description": "Сослагательное и повелительное наклонения"
+  },
+  {
+    "name": "Слово в предложении (A1)",
+    "kind": "gap",
+    "level": "A1",
+    "file": "gap_a1.csv",
+    "description": "Ser/estar, артикли, базовые предлоги, muy/mucho, hay/está"
+  },
+  {
+    "name": "Слово в предложении (A2)",
+    "kind": "gap",
+    "level": "A2",
+    "file": "gap_a2.csv",
+    "description": "Por/para, прошедшие времена, местоимения, глаголы типа gustar"
+  },
+  {
+    "name": "Слово в предложении (B1)",
+    "kind": "gap",
+    "level": "B1",
+    "file": "gap_b1.csv",
+    "description": "Субхунтив после триггеров, коннекторы, безличное se, сравнения"
+  },
+  {
+    "name": "Слово в предложении (B2)",
+    "kind": "gap",
+    "level": "B2",
+    "file": "gap_b2.csv",
+    "description": "Субхунтив vs индикатив, условные предложения, косвенная речь"
+  }
+]

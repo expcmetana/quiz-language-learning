@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ deck.name }}{% endblock %}
+
+{% set mode_labels = {
+  'flashcards': 'Флэш-карты',
+  'choice': 'Выбор варианта',
+  'typed': 'Написать ответ',
+  'match': 'Найти пары',
+} %}
+
+{% block content %}
+<p class="muted small"><a href="/dashboard">← К обзору</a></p>
+
+<div class="card stack block-detail">
+  <div class="row">
+    <h1 style="margin:0;">{{ deck.name }}</h1>
+    {% if deck.level %}
+      <span class="level-chip level-{{ deck.level | lower }}">{{ deck.level }}</span>
+    {% else %}
+      <span class="level-chip level-theme">Тема</span>
+    {% endif %}
+  </div>
+
+  {% if deck.description %}
+    <p class="muted">{{ deck.description }}</p>
+  {% endif %}
+
+  <div class="progress">
+    <span style="width: {{ (100 * started / total) if total else 0 }}%;"></span>
+  </div>
+  <div class="row block-detail__stats">
+    <span class="muted small">Всего: <strong>{{ total }}</strong></span>
+    <span class="muted small">Начато: <strong>{{ started }}</strong></span>
+    {% if due %}
+      <span class="badge due">К повторению: {{ due }}</span>
+    {% endif %}
+  </div>
+</div>
+
+<h2 class="section-heading">Выберите режим</h2>
+<div class="mode-list">
+  {% for mode in modes %}
+    <form method="post" action="/study/start">
+      <input type="hidden" name="deck_id" value="{{ deck.id }}">
+      <input type="hidden" name="mode" value="{{ mode }}">
+      <button class="mode-btn primary" type="submit">{{ mode_labels.get(mode, mode) }}</button>
+    </form>
+  {% endfor %}
+</div>
+
+{% if deck.kind == "vocab" %}
+  <p style="margin-top:1.5rem;"><a class="btn btn-ghost btn-sm" href="/decks/{{ deck.id }}">Редактировать слова</a></p>
+{% endif %}
+{% endblock %}

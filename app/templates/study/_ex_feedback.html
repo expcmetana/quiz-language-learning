@@ -1,0 +1,14 @@
+<div class="flashcard feedback">
+  {% if correct %}
+    <div class="verdict ok">Верно!</div>
+  {% else %}
+    <div class="verdict bad">Неверно</div>
+  {% endif %}
+  <div class="ex-prompt">{{ exercise.prompt }}</div>
+  <div class="word-ru">{{ exercise.answer }}</div>
+  {% if not correct and given %}
+    <div class="muted small">Ваш ответ: {{ given }}</div>
+  {% endif %}
+  <button class="primary" autofocus
+          hx-get="/study/{{ sess.id }}/card" hx-target="#card" hx-swap="innerHTML">Дальше</button>
+</div>

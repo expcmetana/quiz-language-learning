@@ -1,0 +1,12 @@
+<div class="pos">{{ position }} / {{ total }}</div>
+<div class="flashcard" style="min-height:auto;">
+  <div class="word-es">{{ word.es }}</div>
+  {% if word.example %}<div class="example">{{ word.example }}</div>{% endif %}
+</div>
+<div class="options">
+  {% for opt in options %}
+    <button hx-post="/study/{{ sess.id }}/answer"
+            hx-vals='{{ {"answer": opt} | tojson }}'
+            hx-target="#card" hx-swap="innerHTML">{{ opt }}</button>
+  {% endfor %}
+</div>

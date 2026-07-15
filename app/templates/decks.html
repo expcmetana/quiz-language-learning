@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Колоды{% endblock %}
+{% block content %}
+<h1>Колоды</h1>
+
+{% if decks %}
+<div class="grid cols">
+  {% for d in decks %}
+    <a class="deck-item" href="/decks/{{ d.id }}" style="text-decoration:none; color:inherit;">
+      <div class="head">
+        <span class="name">{{ d.name }}</span>
+        <span class="spacer" style="flex:1;"></span>
+        <span class="badge">{{ d.words | length }} слов</span>
+      </div>
+      {% if d.description %}<div class="muted small">{{ d.description }}</div>{% endif %}
+    </a>
+  {% endfor %}
+</div>
+{% else %}
+  <p class="muted">Колод пока нет.</p>
+{% endif %}
+
+<div class="card stack" style="max-width:480px; margin-top:2rem;">
+  <h2 style="margin-top:0;">Новая колода</h2>
+  <form method="post" action="/decks" class="stack">
+    <div>
+      <label>Название</label>
+      <input name="name" required maxlength="128" style="width:100%;">
+    </div>
+    <div>
+      <label>Описание</label>
+      <input name="description" maxlength="512" style="width:100%;">
+    </div>
+    <button class="primary">Создать</button>
+  </form>
+</div>
+{% endblock %}

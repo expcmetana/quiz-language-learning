@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Обзор{% endblock %}
+
+{% macro block_card(b) %}
+<a class="block-card" href="/blocks/{{ b.deck.id }}">
+  <div class="block-card__head">
+    <span class="block-card__name">{{ b.deck.name }}</span>
+    {% if b.level %}
+      <span class="level-chip level-{{ b.level | lower }}">{{ b.level }}</span>
+    {% else %}
+      <span class="level-chip level-theme">Тема</span>
+    {% endif %}
+  </div>
+  <div class="progress">
+    <span style="width: {{ (100 * b.started / b.total) if b.total else 0 }}%;"></span>
+  </div>
+  <div class="block-card__foot">
+    <span class="muted small">{{ b.started }} / {{ b.total }}</span>
+    {% if b.due %}
+      <span class="badge due">К повторению: {{ b.due }}</span>
+    {% endif %}
+  </div>
+</a>
+{% endmacro %}
+
+{% block content %}
+<h1>Обзор</h1>
+
+{% if request.query_params.get('empty') %}
+  <div class="notice warn">Нет карточек к повторению и новых карточек в этом блоке.</div>
+{% endif %}
+
+<p class="muted">Повторений сегодня: <strong>{{ reviews_today }}</strong></p>
+
+{% if blocks %}
+  {% set sections = [
+    ('vocab', 'Слова'),
+    ('tenses', 'Спряжение глаголов'),
+    ('gap', 'Слово в предложении'),
+  ] %}
+  {% for kind, heading in sections %}
+    {% set group = blocks | selectattr('kind', 'equalto', kind) | list %}
+    {% if group %}
+      <h2 class="section-heading">{{ heading }}</h2>
+      <div class="block-grid">
+        {% for b in group %}{{ block_card(b) }}{% endfor %}
+      </div>
+    {% endif %}
+  {% endfor %}
+{% else %}
+  <div class="notice">Пока нет блоков. <a href="/decks">Создайте первую колоду</a>.</div>
+{% endif %}
+{% endblock %}

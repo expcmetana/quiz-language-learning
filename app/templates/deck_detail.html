@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ deck.name }}{% endblock %}
+{% block content %}
+<div class="row">
+  <h1 style="margin-bottom:0;">{{ deck.name }}</h1>
+  <span class="spacer" style="flex:1;"></span>
+  <a class="btn btn-sm" href="/decks/{{ deck.id }}/export">Экспорт CSV</a>
+  <form method="post" action="/decks/{{ deck.id }}/delete"
+        onsubmit="return confirm('Удалить колоду «{{ deck.name }}» со всеми словами?');">
+    <button class="btn-danger btn-sm">Удалить колоду</button>
+  </form>
+</div>
+{% if deck.description %}<p class="muted">{{ deck.description }}</p>{% endif %}
+
+{% if request.query_params.get('imported') is not none %}
+  <div class="notice">Импортировано слов: {{ request.query_params.get('imported') }}.</div>
+{% endif %}
+
+<h2>Слова ({{ deck.words | length }})</h2>
+<div class="table-wrap card" style="padding:0.5rem;">
+  <table>
+    <thead>
+      <tr><th>ES</th><th>RU</th><th>Пример</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for w in deck.words %}
+        <tr>
+          <td>{{ w.es }}</td>
+          <td>{{ w.ru }}</td>
+          <td class="muted small">{{ w.example or '' }}</td>
+          <td style="text-align:right;">
+            <form method="post" action="/decks/{{ deck.id }}/words/{{ w.id }}/delete">
+              <button class="btn-danger btn-sm">✕</button>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        <tr><td colspan="4" class="muted">Слов пока нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="grid cols" style="margin-top:2rem;">
+  <div class="card stack">
+    <h2 style="margin-top:0;">Добавить слово</h2>
+    <form method="post" action="/decks/{{ deck.id }}/words" class="stack">
+      <div><label>ES (испанский)</label><input name="es" required style="width:100%;"></div>
+      <div><label>RU (русский)</label><input name="ru" required style="width:100%;"></div>
+      <div><label>Пример (необязательно)</label><input name="example" style="width:100%;"></div>
+      <button class="primary">Добавить</button>
+    </form>
+  </div>
+
+  <div class="card stack">
+    <h2 style="margin-top:0;">Импорт CSV</h2>
+    <p class="muted small">Заголовок должен быть: <code>es,ru[,example]</code></p>
+    <form method="post" action="/decks/{{ deck.id }}/import" enctype="multipart/form-data" class="stack">
+      <input type="file" name="file" accept=".csv" required>
+      <button class="primary">Импортировать</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

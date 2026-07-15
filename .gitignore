@@ -1,0 +1,25 @@
+# User data — lives outside the image, mounted into the container at /data
+data/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite3
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+.coverage
+
+# Environment / secrets
+.env
+.env.*
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store

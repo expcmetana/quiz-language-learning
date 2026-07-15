@@ -1,0 +1,148 @@
+verb,tense,person,answer,choices,hint
+hablar,Presente de subjuntivo,yo,hable,hables;hablemos;habléis,(чтобы) я говорил
+hablar,Presente de subjuntivo,tú,hables,hable;hablemos;habléis,(чтобы) ты говорил
+hablar,Presente de subjuntivo,él/ella,hable,hablemos;habléis;hablen,(чтобы) он/она говорил
+hablar,Presente de subjuntivo,nosotros,hablemos,habléis;hablen;hable,(чтобы) мы говорили
+hablar,Presente de subjuntivo,vosotros,habléis,hablen;hable;hables,(чтобы) вы говорили
+hablar,Presente de subjuntivo,ellos/ellas,hablen,hable;hables;hablemos,(чтобы) они говорили
+comer,Presente de subjuntivo,yo,coma,comas;comamos;comáis,(чтобы) я ел
+comer,Presente de subjuntivo,tú,comas,coma;comamos;comáis,(чтобы) ты ел
+comer,Presente de subjuntivo,él/ella,coma,comamos;comáis;coman,(чтобы) он/она ел
+comer,Presente de subjuntivo,nosotros,comamos,comáis;coman;coma,(чтобы) мы ели
+comer,Presente de subjuntivo,vosotros,comáis,coman;coma;comas,(чтобы) вы ели
+comer,Presente de subjuntivo,ellos/ellas,coman,coma;comas;comamos,(чтобы) они ели
+vivir,Presente de subjuntivo,yo,viva,vivas;vivamos;viváis,(чтобы) я жил
+vivir,Presente de subjuntivo,tú,vivas,viva;vivamos;viváis,(чтобы) ты жил
+vivir,Presente de subjuntivo,él/ella,viva,vivamos;viváis;vivan,(чтобы) он/она жил
+vivir,Presente de subjuntivo,nosotros,vivamos,viváis;vivan;viva,(чтобы) мы жили
+vivir,Presente de subjuntivo,vosotros,viváis,vivan;viva;vivas,(чтобы) вы жили
+vivir,Presente de subjuntivo,ellos/ellas,vivan,viva;vivas;vivamos,(чтобы) они жили
+ser,Presente de subjuntivo,yo,sea,seas;seamos;seáis,(чтобы) я был
+ser,Presente de subjuntivo,tú,seas,sea;seamos;seáis,(чтобы) ты был
+ser,Presente de subjuntivo,él/ella,sea,seamos;seáis;sean,(чтобы) он/она был
+ser,Presente de subjuntivo,nosotros,seamos,seáis;sean;sea,(чтобы) мы были
+ser,Presente de subjuntivo,vosotros,seáis,sean;sea;seas,(чтобы) вы были
+ser,Presente de subjuntivo,ellos/ellas,sean,sea;seas;seamos,(чтобы) они были
+estar,Presente de subjuntivo,yo,esté,estés;estemos;estéis,(чтобы) я находился
+estar,Presente de subjuntivo,tú,estés,esté;estemos;estéis,(чтобы) ты находился
+estar,Presente de subjuntivo,él/ella,esté,estemos;estéis;estén,(чтобы) он/она находился
+estar,Presente de subjuntivo,nosotros,estemos,estéis;estén;esté,(чтобы) мы находились
+estar,Presente de subjuntivo,vosotros,estéis,estén;esté;estés,(чтобы) вы находились
+estar,Presente de subjuntivo,ellos/ellas,estén,esté;estés;estemos,(чтобы) они находились
+tener,Presente de subjuntivo,yo,tenga,tengas;tengamos;tengáis,(чтобы) я имел
+tener,Presente de subjuntivo,tú,tengas,tenga;tengamos;tengáis,(чтобы) ты имел
+tener,Presente de subjuntivo,él/ella,tenga,tengamos;tengáis;tengan,(чтобы) он/она имел
+tener,Presente de subjuntivo,nosotros,tengamos,tengáis;tengan;tenga,(чтобы) мы имели
+tener,Presente de subjuntivo,vosotros,tengáis,tengan;tenga;tengas,(чтобы) вы имели
+tener,Presente de subjuntivo,ellos/ellas,tengan,tenga;tengas;tengamos,(чтобы) они имели
+hacer,Presente de subjuntivo,yo,haga,hagas;hagamos;hagáis,(чтобы) я сделал
+hacer,Presente de subjuntivo,tú,hagas,haga;hagamos;hagáis,(чтобы) ты сделал
+hacer,Presente de subjuntivo,él/ella,haga,hagamos;hagáis;hagan,(чтобы) он/она сделал
+hacer,Presente de subjuntivo,nosotros,hagamos,hagáis;hagan;haga,(чтобы) мы сделали
+hacer,Presente de subjuntivo,vosotros,hagáis,hagan;haga;hagas,(чтобы) вы сделали
+hacer,Presente de subjuntivo,ellos/ellas,hagan,haga;hagas;hagamos,(чтобы) они сделали
+ir,Presente de subjuntivo,yo,vaya,vayas;vayamos;vayáis,(чтобы) я пошёл
+ir,Presente de subjuntivo,tú,vayas,vaya;vayamos;vayáis,(чтобы) ты пошёл
+ir,Presente de subjuntivo,él/ella,vaya,vayamos;vayáis;vayan,(чтобы) он/она пошёл
+ir,Presente de subjuntivo,nosotros,vayamos,vayáis;vayan;vaya,(чтобы) мы пошли
+ir,Presente de subjuntivo,vosotros,vayáis,vayan;vaya;vayas,(чтобы) вы пошли
+ir,Presente de subjuntivo,ellos/ellas,vayan,vaya;vayas;vayamos,(чтобы) они пошли
+poder,Presente de subjuntivo,yo,pueda,puedas;podamos;podáis,(чтобы) я мог
+poder,Presente de subjuntivo,tú,puedas,pueda;podamos;podáis,(чтобы) ты мог
+poder,Presente de subjuntivo,él/ella,pueda,podamos;podáis;puedan,(чтобы) он/она мог
+poder,Presente de subjuntivo,nosotros,podamos,podáis;puedan;pueda,(чтобы) мы могли
+poder,Presente de subjuntivo,vosotros,podáis,puedan;pueda;puedas,(чтобы) вы могли
+poder,Presente de subjuntivo,ellos/ellas,puedan,pueda;puedas;podamos,(чтобы) они могли
+saber,Presente de subjuntivo,yo,sepa,sepas;sepamos;sepáis,(чтобы) я знал
+saber,Presente de subjuntivo,tú,sepas,sepa;sepamos;sepáis,(чтобы) ты знал
+saber,Presente de subjuntivo,él/ella,sepa,sepamos;sepáis;sepan,(чтобы) он/она знал
+saber,Presente de subjuntivo,nosotros,sepamos,sepáis;sepan;sepa,(чтобы) мы знали
+saber,Presente de subjuntivo,vosotros,sepáis,sepan;sepa;sepas,(чтобы) вы знали
+saber,Presente de subjuntivo,ellos/ellas,sepan,sepa;sepas;sepamos,(чтобы) они знали
+dar,Presente de subjuntivo,yo,dé,des;demos;deis,(чтобы) я дал
+dar,Presente de subjuntivo,tú,des,dé;demos;deis,(чтобы) ты дал
+dar,Presente de subjuntivo,él/ella,dé,demos;deis;den,(чтобы) он/она дал
+dar,Presente de subjuntivo,nosotros,demos,deis;den;dé,(чтобы) мы дали
+dar,Presente de subjuntivo,vosotros,deis,den;dé;des,(чтобы) вы дали
+dar,Presente de subjuntivo,ellos/ellas,den,dé;des;demos,(чтобы) они дали
+venir,Presente de subjuntivo,yo,venga,vengas;vengamos;vengáis,(чтобы) я пришёл
+venir,Presente de subjuntivo,tú,vengas,venga;vengamos;vengáis,(чтобы) ты пришёл
+venir,Presente de subjuntivo,él/ella,venga,vengamos;vengáis;vengan,(чтобы) он/она пришёл
+venir,Presente de subjuntivo,nosotros,vengamos,vengáis;vengan;venga,(чтобы) мы пришли
+venir,Presente de subjuntivo,vosotros,vengáis,vengan;venga;vengas,(чтобы) вы пришли
+venir,Presente de subjuntivo,ellos/ellas,vengan,venga;vengas;vengamos,(чтобы) они пришли
+hablar,Imperativo,tú,habla,hable;hablemos;hablad,говори
+hablar,Imperativo,usted,hable,hablemos;hablad;hablen,говорите (Vd.)
+hablar,Imperativo,nosotros,hablemos,hablad;hablen;habla,давайте говорить
+hablar,Imperativo,vosotros,hablad,hablen;habla;hable,говорите
+hablar,Imperativo,ustedes,hablen,habla;hable;hablemos,говорите (Vds.)
+comer,Imperativo,tú,come,coma;comamos;comed,ешь
+comer,Imperativo,usted,coma,comamos;comed;coman,ешьте (Vd.)
+comer,Imperativo,nosotros,comamos,comed;coman;come,давайте есть
+comer,Imperativo,vosotros,comed,coman;come;coma,ешьте
+comer,Imperativo,ustedes,coman,come;coma;comamos,ешьте (Vds.)
+vivir,Imperativo,tú,vive,viva;vivamos;vivid,живи
+vivir,Imperativo,usted,viva,vivamos;vivid;vivan,живите (Vd.)
+vivir,Imperativo,nosotros,vivamos,vivid;vivan;vive,давайте жить
+vivir,Imperativo,vosotros,vivid,vivan;vive;viva,живите
+vivir,Imperativo,ustedes,vivan,vive;viva;vivamos,живите (Vds.)
+tener,Imperativo,tú,ten,tenga;tengamos;tened,имей
+tener,Imperativo,usted,tenga,tengamos;tened;tengan,имейте (Vd.)
+tener,Imperativo,nosotros,tengamos,tened;tengan;ten,давайте иметь
+tener,Imperativo,vosotros,tened,tengan;ten;tenga,имейте
+tener,Imperativo,ustedes,tengan,ten;tenga;tengamos,имейте (Vds.)
+poner,Imperativo,tú,pon,ponga;pongamos;poned,положи
+poner,Imperativo,usted,ponga,pongamos;poned;pongan,положите (Vd.)
+poner,Imperativo,nosotros,pongamos,poned;pongan;pon,давайте положим
+poner,Imperativo,vosotros,poned,pongan;pon;ponga,положите
+poner,Imperativo,ustedes,pongan,pon;ponga;pongamos,положите (Vds.)
+salir,Imperativo,tú,sal,salga;salgamos;salid,выйди
+salir,Imperativo,usted,salga,salgamos;salid;salgan,выйдите (Vd.)
+salir,Imperativo,nosotros,salgamos,salid;salgan;sal,давайте выйдем
+salir,Imperativo,vosotros,salid,salgan;sal;salga,выйдите
+salir,Imperativo,ustedes,salgan,sal;salga;salgamos,выйдите (Vds.)
+hacer,Imperativo,tú,haz,haga;hagamos;haced,сделай
+hacer,Imperativo,usted,haga,hagamos;haced;hagan,сделайте (Vd.)
+hacer,Imperativo,nosotros,hagamos,haced;hagan;haz,давайте сделаем
+hacer,Imperativo,vosotros,haced,hagan;haz;haga,сделайте
+hacer,Imperativo,ustedes,hagan,haz;haga;hagamos,сделайте (Vds.)
+decir,Imperativo,tú,di,diga;digamos;decid,скажи
+decir,Imperativo,usted,diga,digamos;decid;digan,скажите (Vd.)
+decir,Imperativo,nosotros,digamos,decid;digan;di,давайте скажем
+decir,Imperativo,vosotros,decid,digan;di;diga,скажите
+decir,Imperativo,ustedes,digan,di;diga;digamos,скажите (Vds.)
+ir,Imperativo,tú,ve,vaya;vamos;id,иди
+ir,Imperativo,usted,vaya,vamos;id;vayan,идите (Vd.)
+ir,Imperativo,nosotros,vamos,id;vayan;ve,давайте пойдём
+ir,Imperativo,vosotros,id,vayan;ve;vaya,идите
+ir,Imperativo,ustedes,vayan,ve;vaya;vamos,идите (Vds.)
+ser,Imperativo,tú,sé,sea;seamos;sed,будь
+ser,Imperativo,usted,sea,seamos;sed;sean,будьте (Vd.)
+ser,Imperativo,nosotros,seamos,sed;sean;sé,давайте будем
+ser,Imperativo,vosotros,sed,sean;sé;sea,будьте
+ser,Imperativo,ustedes,sean,sé;sea;seamos,будьте (Vds.)
+venir,Imperativo,tú,ven,venga;vengamos;venid,приди
+venir,Imperativo,usted,venga,vengamos;venid;vengan,придите (Vd.)
+venir,Imperativo,nosotros,vengamos,venid;vengan;ven,давайте придём
+venir,Imperativo,vosotros,venid,vengan;ven;venga,придите
+venir,Imperativo,ustedes,vengan,ven;venga;vengamos,придите (Vds.)
+dar,Imperativo,tú,da,dé;demos;dad,дай
+dar,Imperativo,usted,dé,demos;dad;den,дайте (Vd.)
+dar,Imperativo,nosotros,demos,dad;den;da,давайте дадим
+dar,Imperativo,vosotros,dad,den;da;dé,дайте
+dar,Imperativo,ustedes,den,da;dé;demos,дайте (Vds.)
+pensar,Imperativo,tú,piensa,piense;pensemos;pensad,думай
+pensar,Imperativo,usted,piense,pensemos;pensad;piensen,думайте (Vd.)
+pensar,Imperativo,nosotros,pensemos,pensad;piensen;piensa,давайте думать
+pensar,Imperativo,vosotros,pensad,piensen;piensa;piense,думайте
+pensar,Imperativo,ustedes,piensen,piensa;piense;pensemos,думайте (Vds.)
+volver,Imperativo,tú,vuelve,vuelva;volvamos;volved,вернись
+volver,Imperativo,usted,vuelva,volvamos;volved;vuelvan,вернитесь (Vd.)
+volver,Imperativo,nosotros,volvamos,volved;vuelvan;vuelve,давайте вернёмся
+volver,Imperativo,vosotros,volved,vuelvan;vuelve;vuelva,вернитесь
+volver,Imperativo,ustedes,vuelvan,vuelve;vuelva;volvamos,вернитесь (Vds.)
+dormir,Imperativo,tú,duerme,duerma;durmamos;dormid,спи
+dormir,Imperativo,usted,duerma,durmamos;dormid;duerman,спите (Vd.)
+dormir,Imperativo,nosotros,durmamos,dormid;duerman;duerme,давайте спать
+dormir,Imperativo,vosotros,dormid,duerman;duerme;duerma,спите
+dormir,Imperativo,ustedes,duerman,duerme;duerma;durmamos,спите (Vds.)

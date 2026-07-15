@@ -1,0 +1,413 @@
+es,ru,example
+el,определённый артикль (м.р.),El libro está en la mesa.
+la,определённый артикль (ж.р.),La casa es muy grande.
+los,определённый артикль (м.р. мн.ч.),Los niños juegan en el parque.
+las,определённый артикль (ж.р. мн.ч.),Las flores son bonitas.
+un,неопределённый артикль (м.р.),Tengo un perro pequeño.
+una,неопределённый артикль (ж.р.),Quiero una taza de café.
+unos,несколько (м.р.),Compré unos zapatos nuevos.
+unas,несколько (ж.р.),Vi unas películas muy buenas.
+este,этот,Este coche es mío.
+esta,эта,Esta semana tengo mucho trabajo.
+estos,эти (м.р.),Estos libros son interesantes.
+estas,эти (ж.р.),Estas manzanas están ricas.
+ese,тот,Ese hombre es mi vecino.
+esa,та,Esa tienda cierra a las ocho.
+esos,те (м.р.),Esos zapatos son caros.
+esas,те (ж.р.),Esas chicas estudian conmigo.
+esto,это (нечто),¿Qué es esto?
+eso,то (нечто),Eso no es verdad.
+su,его/её/их (перед сущ.),Su hermana vive en Madrid.
+sus,его/её/их (мн.ч.),Sus padres son muy amables.
+nuestro,наш,Nuestro coche es rojo.
+nuestra,наша,Nuestra casa tiene jardín.
+vuestro,ваш,¿Dónde está vuestro perro?
+vuestra,ваша,Vuestra idea me gusta mucho.
+mío,мой (свой),Este bolígrafo es mío.
+tuyo,твой (свой),¿Este libro es tuyo?
+suyo,его/её/свой,El coche azul es suyo.
+algo,что-то,¿Quieres comer algo?
+nada,ничто,"No quiero nada, gracias."
+alguien,кто-то,Alguien llama a la puerta.
+nadie,никто,Nadie sabe la respuesta.
+todo,всё,Todo está bien.
+toda,вся,Trabajé toda la noche.
+todos,все,Todos mis amigos vienen hoy.
+otro,другой,"Quiero otro café, por favor."
+otra,другая,Hay otra manera de hacerlo.
+mismo,тот же самый,Vivimos en el mismo barrio.
+cada,каждый,Corro cada mañana.
+varios,несколько,Tengo varios libros de español.
+ambos,оба,Ambos hermanos estudian medicina.
+alguno,какой-нибудь,¿Tienes alguno de estos discos?
+ninguno,никакой,Ninguno de ellos vino a la fiesta.
+mucho,много,Te quiero mucho.
+poco,мало,Hablo poco español todavía.
+tanto,столько,No trabajes tanto.
+a,"к, в (предлог направления)",Voy a la escuela.
+de,"из, от, о (предлог)",Soy de Rusia.
+en,"в, на (предлог)",Vivo en una ciudad pequeña.
+con,с (предлог),Voy al cine con mis amigos.
+sin,без,No puedo vivir sin música.
+sobre,"на, о (предлог)",El gato duerme sobre la cama.
+debajo de,под (чем-то),El perro está debajo de la mesa.
+entre,между,La farmacia está entre el banco y la tienda.
+hasta,до,Trabajo hasta las seis.
+desde,"с, от (времени/места)",Estudio español desde enero.
+durante,в течение,Durante el verano viajamos mucho.
+para,"для, чтобы",Este regalo es para ti.
+por,"из-за, через, по",Gracias por tu ayuda.
+y,и,Me gustan el café y el té.
+o,или,¿Prefieres carne o pescado?
+pero,но,"Quiero ir, pero no tengo tiempo."
+porque,потому что,No salgo porque llueve.
+si,если,"Si tengo tiempo, te llamo."
+que,"что, который",Creo que tienes razón.
+como,как,Canta como un pájaro.
+cuando,когда (союз),"Cuando llegues, llámame."
+veintiuno,двадцать один,Mi hermano tiene veintiún años.
+veintidós,двадцать два,Hay veintidós estudiantes en la clase.
+treinta,тридцать,El mes tiene treinta días.
+cuarenta,сорок,Mi padre tiene cuarenta años.
+cincuenta,пятьдесят,El billete cuesta cincuenta euros.
+sesenta,шестьдесят,La hora tiene sesenta minutos.
+setenta,семьдесят,Mi abuela tiene setenta años.
+ochenta,восемьдесят,El tren va a ochenta kilómetros por hora.
+noventa,девяносто,La película dura noventa minutos.
+cien,сто,Hay cien personas en la sala.
+mil,тысяча,Esta ciudad tiene mil años de historia.
+millón,миллион,Un millón de personas viven aquí.
+primero,первый,Enero es el primer mes del año.
+segundo,второй,Vivo en el segundo piso.
+tercero,третий,
+último,последний,
+rojo,красный,
+azul,синий,
+verde,зелёный,
+amarillo,жёлтый,
+negro,чёрный,
+blanco,белый,
+gris,серый,
+marrón,коричневый,
+rosa,розовый,
+morado,фиолетовый,
+el minuto,минута,
+el mediodía,полдень,
+la medianoche,полночь,
+el fin de semana,выходные,
+el cumpleaños,день рождения,
+la fecha,дата,
+el reloj,часы,
+el día,день,
+el tiempo,время; погода,
+la cabeza,голова,
+la cara,лицо,
+el ojo,глаз,
+la nariz,нос,
+la boca,рот,
+la oreja,ухо,
+el pelo,волосы,
+el cuello,шея,
+el brazo,рука (от плеча),
+la mano,рука (кисть),
+el dedo,палец,
+la pierna,нога,
+el pie,ступня,
+la espalda,спина,
+el diente,зуб,
+la ropa,одежда,
+la camisa,рубашка,
+la camiseta,футболка,
+el pantalón,брюки,
+la falda,юбка,
+el vestido,платье,
+el zapato,туфля,
+el calcetín,носок,
+la chaqueta,куртка,
+el abrigo,пальто,
+el sombrero,шляпа,
+el bolso,сумка,
+el perro,собака,
+el gato,кот,
+el pájaro,птица,
+el pez,рыба (живая),
+el caballo,лошадь,
+la vaca,корова,
+el cerdo,свинья,
+la oveja,овца,
+el ratón,мышь,
+el león,лев,
+el sol,солнце,
+la luna,луна,
+la estrella,звезда,
+el cielo,небо,
+el mar,море,
+el río,река,
+la montaña,гора,
+el árbol,дерево,
+la flor,цветок,
+la playa,пляж,
+la lluvia,дождь,
+la nieve,снег,
+el viento,ветер,
+el fuego,огонь,
+la persona,человек,
+el hombre,мужчина,
+la mujer,женщина,
+el niño,"мальчик, ребёнок",
+la niña,девочка,
+el chico,парень,
+la chica,девушка,
+el amigo,друг,
+la amiga,подруга,
+el señor,господин,
+la señora,госпожа,
+el bebé,младенец,
+la gente,люди,
+la cosa,вещь,
+el nombre,имя,
+el número,"номер, число",
+el lugar,место,
+el mundo,мир,
+el país,страна,
+el idioma,язык (речь),
+la palabra,слово,
+el libro,книга,
+el papel,бумага,
+el lápiz,карандаш,
+el cuaderno,тетрадь,
+la mochila,рюкзак,
+el teléfono,телефон,
+el ordenador,компьютер,
+el coche,машина,
+el autobús,автобус,
+el tren,поезд,
+el avión,самолёт,
+la bicicleta,велосипед,
+el dinero,деньги,
+el trabajo,работа,
+el problema,проблема,
+la pregunta,вопрос,
+la respuesta,ответ,
+el regalo,подарок,
+la foto,фотография,
+la música,музыка,
+la película,фильм,
+el juego,игра,
+la fiesta,"праздник, вечеринка",
+la clase,"урок, класс",
+comer,"есть, кушать",
+beber,пить,
+dormir,спать,
+vivir,жить,
+trabajar,работать,
+estudiar,учиться,
+jugar,играть,
+correr,бегать,
+caminar,ходить пешком,
+escribir,писать,
+leer,читать,
+escuchar,слушать,
+mirar,смотреть,
+buscar,искать,
+encontrar,находить,
+empezar,начинать,
+terminar,заканчивать,
+entender,понимать,
+aprender,"учить, изучать",
+enseñar,"преподавать, учить кого-то",
+comprar,покупать,
+vender,продавать,
+pagar,платить,
+abrir,открывать,
+cerrar,закрывать,
+entrar,входить,
+subir,подниматься,
+bajar,спускаться,
+sentir,чувствовать,
+gustar,нравиться,
+necesitar,нуждаться,
+ayudar,помогать,
+esperar,"ждать, надеяться",
+cambiar,менять,
+tocar,"трогать, играть (на инструменте)",
+cocinar,готовить еду,
+limpiar,"убирать, чистить",
+lavar,мыть,
+cortar,резать,
+romper,ломать,
+mostrar,показывать,
+preguntar,спрашивать,
+responder,отвечать,
+llamar,"звать, звонить",
+recordar,"помнить, напоминать",
+olvidar,забывать,
+conocer,знать (быть знакомым),
+reír,смеяться,
+llorar,плакать,
+cantar,петь,
+bailar,танцевать,
+nadar,плавать,
+viajar,путешествовать,
+volver,возвращаться,
+usar,использовать,
+tomar,"брать, пить",
+sacar,"вынимать, доставать",
+existir,существовать,
+nacer,рождаться,
+morir,умирать,
+contento,довольный,
+cansado,уставший,
+enfermo,больной,
+sano,здоровый,
+gordo,толстый,
+delgado,худой,
+fuerte,сильный,
+débil,слабый,
+rico,богатый; вкусный,
+pobre,бедный,
+inteligente,умный,
+amable,"любезный, добрый",
+simpático,"симпатичный, приятный",
+aburrido,скучный,
+interesante,интересный,
+importante,важный,
+oscuro,тёмный,
+claro,"светлый, ясный",
+ancho,широкий,
+estrecho,узкий,
+suave,"мягкий, нежный",
+duro,твёрдый,
+pesado,тяжёлый,
+ligero,лёгкий (по весу),
+lleno,полный,
+vacío,пустой,
+seco,сухой,
+mojado,мокрый,
+tranquilo,спокойный,
+peligroso,опасный,
+seguro,"безопасный, уверенный",
+libre,свободный,
+ocupado,занятый,
+casado,"женатый, замужняя",
+soltero,холостой,
+especial,особенный,
+normal,обычный,
+mejor,"лучше, лучший",
+peor,"хуже, худший",
+mayor,"старший, больший",
+menor,"младший, меньший",
+aquí,здесь,
+allí,там,
+allá,"туда, там",
+arriba,наверху,
+abajo,внизу,
+dentro,внутри,
+fuera,снаружи,
+cerca,близко,
+lejos,далеко,
+muy,очень,
+más,больше,
+menos,меньше,
+también,тоже,
+tampoco,тоже не,
+solo,"только, один",
+bastante,достаточно,
+demasiado,слишком,
+casi,почти,
+todavía,"ещё, всё ещё",
+ya,уже,
+pronto,скоро,
+despacio,медленно,
+bien,хорошо,
+mal,плохо,
+así,так,
+además,кроме того,
+cuarto,четвёртый; четверть,
+quinto,пятый,
+sexto,шестой,
+séptimo,седьмой,
+octavo,восьмой,
+noveno,девятый,
+décimo,десятый,
+doscientos,двести,
+trescientos,триста,
+quinientos,пятьсот,
+la cuchara,ложка,
+el tenedor,вилка,
+el cuchillo,нож,
+el plato,тарелка,
+el vaso,стакан,
+la taza,чашка,
+la olla,кастрюля,
+la sartén,сковорода,
+el sofá,диван,
+la lámpara,лампа,
+el estante,полка,
+la alfombra,ковёр,
+el cajón,ящик (мебели),
+el estudiante,студент,
+el profesor,преподаватель,
+la profesora,преподавательница,
+el examen,экзамен,
+la tarea,домашнее задание,
+la pizarra,доска,
+el bolígrafo,ручка (для письма),
+la goma,ластик,
+la regla,линейка; правило,
+la televisión,"телевидение, телевизор",
+la radio,радио,
+el calor,жара,
+la nube,облако,
+nublado,облачный,
+soleado,солнечный,
+la izquierda,левая сторона,
+la derecha,правая сторона,
+recto,прямо (направление),
+el norte,север,
+el sur,юг,
+el este,восток,
+el oeste,запад,
+hay,"имеется, есть",
+vale,"ладно, хорошо",
+de acuerdo,договорились,
+quizás,может быть,
+los padres,родители,
+el fútbol,футбол,
+el deporte,спорт,
+el equipo,команда,
+el partido,матч,
+el aire,воздух,
+la luz,свет,
+la sombra,тень,
+el ruido,шум,
+el silencio,тишина,
+el olor,запах,
+el sabor,вкус,
+pedir,"просить, заказывать",
+servir,"служить, подавать",
+elegir,выбирать,
+decidir,решать,
+intentar,пытаться,
+tratar,"пытаться, обращаться",
+parar,останавливать(ся),
+continuar,продолжать,
+contar,считать; рассказывать,
+mandar,"посылать, приказывать",
+enviar,отправлять,
+recibir,получать,
+ganar,"выигрывать, зарабатывать",
+perder,"терять, проигрывать",
+costar,стоить,
+faltar,не хватать,
+doler,болеть (о боли),
+distinto,"иной, отличный",
+diferente,"другой, отличающийся",
+parecido,похожий,
+igual,"одинаковый, равный",
+correcto,правильный,
+incorrecto,неправильный,
+verdadero,"истинный, настоящий",
+falso,ложный,
+posible,возможный,
+imposible,невозможный,

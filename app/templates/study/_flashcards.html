@@ -1,0 +1,18 @@
+<div class="pos">{{ position }} / {{ total }}</div>
+<div class="flashcard">
+  <div class="word-es">{{ word.es }}</div>
+  {% if word.example %}<div class="example">{{ word.example }}</div>{% endif %}
+
+  <input type="checkbox" id="flip-{{ sess.id }}-{{ position }}" class="flip-toggle">
+  <label for="flip-{{ sess.id }}-{{ position }}" class="btn flip-label">Показать перевод</label>
+
+  <div class="flip-back">
+    <div class="word-ru">{{ word.ru }}</div>
+  </div>
+  <div class="grade-buttons">
+    <button class="g-again" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 2}' hx-target="#card" hx-swap="innerHTML">Снова</button>
+    <button class="g-hard" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 3}' hx-target="#card" hx-swap="innerHTML">Трудно</button>
+    <button class="g-good" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 4}' hx-target="#card" hx-swap="innerHTML">Хорошо</button>
+    <button class="g-easy" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 5}' hx-target="#card" hx-swap="innerHTML">Легко</button>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}{{ deck.name }} — Найти пары{% endblock %}
+{% block content %}
+<div class="study-wrap stack">
+  <div class="row">
+    <h1 style="margin:0;">{{ deck.name }}</h1>
+    <span class="badge">Найти пары</span>
+    <span class="spacer" style="flex:1;"></span>
+    <a class="btn btn-sm btn-ghost" href="/dashboard">Прервать</a>
+  </div>
+  <p class="muted small">Соедините испанские слова с их переводами.</p>
+  <div id="match-container">
+    <div id="match-grid" class="match-grid"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const WORDS = [
+    {% for w in words %}
+      {id: {{ w.id }}, es: {{ w.es | tojson }}, ru: {{ w.ru | tojson }}}{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ];
+  const SESSION_ID = {{ sess.id | tojson }};
+
+  const grid = document.getElementById("match-grid");
+  const container = document.getElementById("match-container");
+  const misses = {};
+
+  let tiles = [];
+  WORDS.forEach(w => {
+    misses[w.id] = 0;
+    tiles.push({ wordId: w.id, side: "es", text: w.es });
+    tiles.push({ wordId: w.id, side: "ru", text: w.ru });
+  });
+  // shuffle
+  for (let i = tiles.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+  }
+
+  tiles.forEach(t => {
+    const el = document.createElement("div");
+    el.className = "match-tile";
+    el.textContent = t.text;
+    el.dataset.wordId = t.wordId;
+    el.dataset.side = t.side;
+    el.addEventListener("click", () => onClick(el));
+    grid.appendChild(el);
+  });
+
+  let selected = null;
+  let locked = false;
+  let remaining = WORDS.length;
+
+  function onClick(el) {
+    if (locked || el.classList.contains("matched") || el === selected) return;
+    if (!selected) {
+      selected = el;
+      el.classList.add("selected");
+      return;
+    }
+    const a = selected, b = el;
+    b.classList.add("selected");
+    if (a.dataset.wordId === b.dataset.wordId && a.dataset.side !== b.dataset.side) {
+      a.classList.remove("selected");
+      b.classList.remove("selected");
+      a.classList.add("matched");
+      b.classList.add("matched");
+      selected = null;
+      remaining--;
+      if (remaining === 0) finish();
+    } else {
+      misses[a.dataset.wordId] = (misses[a.dataset.wordId] || 0) + 1;
+      misses[b.dataset.wordId] = (misses[b.dataset.wordId] || 0) + 1;
+      locked = true;
+      a.classList.add("wrong");
+      b.classList.add("wrong");
+      setTimeout(() => {
+        a.classList.remove("selected", "wrong");
+        b.classList.remove("selected", "wrong");
+        selected = null;
+        locked = false;
+      }, 600);
+    }
+  }
+
+  async function finish() {
+    const resp = await fetch("/study/" + SESSION_ID + "/match-results", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ misses: misses }),
+    });
+    container.innerHTML = await resp.text();
+  }
+})();
+</script>
+{% endblock %}
