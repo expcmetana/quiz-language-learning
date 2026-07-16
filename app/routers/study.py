@@ -1,3 +1,4 @@
+import json
 import random
 import uuid
 from dataclasses import dataclass, field
@@ -93,6 +94,36 @@ def _parse_misses(raw) -> dict[int, int]:
     return out
 
 
+def _split_highlight(sentence: str | None, target: str | None):
+    """Split `sentence` around the first case-insensitive occurrence of `target`,
+    returning (before, match, after) using the sentence's own casing for `match`,
+    or None if either is empty or `target` isn't found. Each piece is rendered
+    auto-escaped by Jinja and the highlight <span> lives in the template, so there
+    is no manual escaping / |safe usage anywhere in this path."""
+    if not sentence or not target:
+        return None
+    idx = sentence.lower().find(target.lower())
+    if idx < 0:
+        return None
+    end = idx + len(target)
+    return (sentence[:idx], sentence[idx:end], sentence[end:])
+
+
+def _parse_options(raw: str | None) -> list[str]:
+    """Coerce the client-echoed options payload back to a list of strings,
+    returning [] on anything malformed instead of raising (mirrors _parse_misses).
+    Purely for re-rendering the feedback grid; never influences grading."""
+    if not raw:
+        return []
+    try:
+        data = json.loads(raw)
+    except (TypeError, ValueError):
+        return []
+    if not isinstance(data, list):
+        return []
+    return [x for x in data if isinstance(x, str)]
+
+
 def _resolve_current(db: Session, sess: StudySession):
     """Item (Word/Exercise) at sess.index, transparently dropping queue entries
     whose row was deleted mid-session (cascade from another tab). Returns None
@@ -118,21 +149,24 @@ def _render_card(request: Request, db: Session, sess: StudySession):
         _sessions.pop(sess.id, None)
         return templates.TemplateResponse(request, "study/_summary.html", ctx)
 
+    deck = db.get(Deck, sess.deck_id)
     if sess.item_kind == "exercise":
         exercise = item
-        ctx = {"sess": sess, "exercise": exercise, "position": sess.index + 1, "total": len(sess.queue)}
+        ctx = {"sess": sess, "exercise": exercise, "deck": deck, "position": sess.index + 1, "total": len(sess.queue)}
         if sess.mode == "choice":
             options = exercise_options(exercise) + [exercise.answer]
             random.shuffle(options)
             ctx["options"] = options
+            ctx["highlight"] = _split_highlight(exercise.prompt, "___") if exercise.type == "gap" else None
         return templates.TemplateResponse(request, f"study/_ex_{sess.mode}.html", ctx)
 
     word = item
-    ctx = {"sess": sess, "word": word, "position": sess.index + 1, "total": len(sess.queue)}
+    ctx = {"sess": sess, "word": word, "deck": deck, "position": sess.index + 1, "total": len(sess.queue)}
     if sess.mode == "choice":
         options = pick_distractors(db, word) + [word.ru]
         random.shuffle(options)
         ctx["options"] = options
+        ctx["highlight"] = _split_highlight(word.example, word.es) if word.example else None
     return templates.TemplateResponse(request, f"study/_{sess.mode}.html", ctx)
 
 
@@ -197,6 +231,7 @@ def answer(
     profile: CurrentProfile,
     grade: int | None = Form(None),
     answer: str | None = Form(None),
+    options: str | None = Form(None),
 ):
     sess = _get_session(sid, profile.id)
     if sess.index >= len(sess.queue):
@@ -225,7 +260,17 @@ def answer(
         return templates.TemplateResponse(
             request,
             "study/_ex_feedback.html",
-            {"sess": sess, "exercise": exercise, "given": answer, "correct": final_grade >= 3},
+            {
+                "sess": sess,
+                "exercise": exercise,
+                "given": answer,
+                "correct": final_grade >= 3,
+                "deck": db.get(Deck, sess.deck_id),
+                "options": _parse_options(options),
+                "highlight": _split_highlight(exercise.prompt, "___") if exercise.type == "gap" else None,
+                "position": sess.index,
+                "total": len(sess.queue),
+            },
         )
 
     word = item
@@ -252,7 +297,17 @@ def answer(
     return templates.TemplateResponse(
         request,
         "study/_feedback.html",
-        {"sess": sess, "word": word, "given": answer, "correct": final_grade >= 3},
+        {
+            "sess": sess,
+            "word": word,
+            "given": answer,
+            "correct": final_grade >= 3,
+            "deck": db.get(Deck, sess.deck_id),
+            "options": _parse_options(options),
+            "highlight": _split_highlight(word.example, word.es) if word.example else None,
+            "position": sess.index,
+            "total": len(sess.queue),
+        },
     )
 
 

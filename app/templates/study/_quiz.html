@@ -1,0 +1,27 @@
+{% macro header(sess, deck, instruction, position, total) %}
+<div class="quiz-header">
+  <div class="quiz-header__left">
+    <div class="quiz-badge">{{ position }}</div>
+    <div class="quiz-titles">
+      <div class="quiz-instruction">{{ instruction }}</div>
+      <div class="quiz-subtitle">{{ deck.name }} · вопрос {{ position }} из {{ total }}</div>
+    </div>
+  </div>
+  <div class="quiz-header__right">
+    <div class="quiz-progress">
+      {% set segs = (total + 3) // 4 %}
+      {% set filled = (position - 1) // 4 %}
+      {% for i in range(segs) %}<span class="quiz-seg{% if i < filled %} is-filled{% endif %}"></span>{% endfor %}
+    </div>
+    <a class="quiz-abort" href="/dashboard">Прервать</a>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro footer() %}
+<div class="quiz-footer">1–4 — выбрать · Enter — подтвердить · Esc — прервать</div>
+{% endmacro %}
+
+{% macro sentence(highlight, fallback) %}
+<div class="quiz-sentence">{% if highlight %}{{ highlight[0] }}<span class="quiz-hl">{{ highlight[1] }}</span>{{ highlight[2] }}{% else %}{{ fallback }}{% endif %}</div>
+{% endmacro %}

@@ -2,6 +2,10 @@
 {% set mode_labels = {'flashcards': 'Флэш-карты', 'choice': 'Выбор варианта', 'typed': 'Написать перевод'} %}
 {% block title %}{{ deck.name }} — {{ mode_labels.get(sess.mode, sess.mode) }}{% endblock %}
 {% block content %}
+{% if sess.mode == "choice" %}
+<div id="card" hx-get="/study/{{ sess.id }}/card" hx-trigger="load" hx-swap="innerHTML"></div>
+<script src="/static/js/quiz.js" defer></script>
+{% else %}
 <div class="study-wrap stack">
   <div class="row">
     <h1 style="margin:0;">{{ deck.name }}</h1>
@@ -11,4 +15,5 @@
   </div>
   <div id="card" hx-get="/study/{{ sess.id }}/card" hx-trigger="load" hx-swap="innerHTML"></div>
 </div>
+{% endif %}
 {% endblock %}
