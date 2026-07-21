@@ -6,6 +6,23 @@
 (function () {
   "use strict";
 
+  // Auto-advance: after a correct answer in choice mode, move to the next
+  // card on its own instead of waiting for Enter/click. The server marks the
+  // eligible "Дальше" button with data-autoadvance="<ms>"; any manual click
+  // (or Escape/reload) swaps #card again, which cancels the pending timer.
+  var autoAdvanceTimer = null;
+
+  document.addEventListener("htmx:afterSwap", function (e) {
+    var target = (e.detail && e.detail.target) || e.target;
+    if (!target || target.id !== "card") return;
+    clearTimeout(autoAdvanceTimer);
+    var btn = target.querySelector(".quiz-next[data-autoadvance]");
+    if (btn) {
+      var delay = parseInt(btn.dataset.autoadvance, 10) || 1200;
+      autoAdvanceTimer = setTimeout(function () { btn.click(); }, delay);
+    }
+  });
+
   document.addEventListener("keydown", function (e) {
     var screen = document.querySelector(".quiz-screen");
     if (!screen) return;

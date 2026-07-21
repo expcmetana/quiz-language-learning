@@ -12,6 +12,10 @@
           {{ p.name }}
         </button>
       </form>
+      <form method="post" action="/profiles/{{ p.id }}/delete"
+            onsubmit="return confirm('Удалить профиль «{{ p.name }}» и весь прогресс? Это необратимо.');">
+        <button class="btn-ghost btn-sm profile-delete" type="submit" title="Удалить профиль">✕</button>
+      </form>
     </div>
   {% endfor %}
 </div>

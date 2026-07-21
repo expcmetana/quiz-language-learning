@@ -84,6 +84,18 @@ def logout():
     return resp
 
 
+@router.post("/profiles/{profile_id}/delete")
+def delete_profile(profile_id: int, request: Request, db: DbSession):
+    profile = db.get(Profile, profile_id)
+    if profile is not None:
+        db.delete(profile)
+        db.commit()
+    resp = RedirectResponse("/profiles", status_code=303)
+    if request.cookies.get("profile_id") == str(profile_id):
+        resp.delete_cookie("profile_id")
+    return resp
+
+
 @router.get("/dashboard")
 def dashboard(request: Request, db: DbSession, profile: CurrentProfile):
     now = datetime.now(timezone.utc)

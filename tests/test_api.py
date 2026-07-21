@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import func, select
 
-from app.models import CardState, Deck, ReviewLog, Word
+from app.models import CardState, Deck, Profile, ReviewLog, Word
 from app.routers import study
 from app.seed import SEED_DECK_NAME
 
@@ -57,6 +57,44 @@ def test_index_redirects_to_dashboard_with_cookie(make_client):
     r = c.get("/", follow_redirects=False)
     assert r.status_code in (302, 307)
     assert r.headers["location"] == "/dashboard"
+
+
+def test_delete_profile_cascades_and_clears_cookie(make_client, db):
+    c = make_client("ToDelete")
+    profile_id = int(c.cookies["profile_id"])
+    deck_id = _seed_deck_id(db)
+
+    sid = _start(c, deck_id, "typed")
+    word = _first_word(db, sid)
+    c.post(f"/study/{sid}/answer", data={"answer": word.ru})
+    db.expire_all()
+    assert db.get(CardState, (profile_id, word.id)) is not None
+    assert db.scalar(select(func.count()).select_from(ReviewLog).where(ReviewLog.profile_id == profile_id)) == 1
+
+    r = c.post(f"/profiles/{profile_id}/delete", follow_redirects=False)
+    assert r.status_code == 303
+    assert r.headers["location"] == "/profiles"
+    assert "profile_id" not in r.cookies
+
+    db.expire_all()
+    assert db.get(Profile, profile_id) is None
+    assert db.get(CardState, (profile_id, word.id)) is None
+    assert db.scalar(select(func.count()).select_from(ReviewLog).where(ReviewLog.profile_id == profile_id)) == 0
+
+    picker = c.get("/profiles")
+    assert "ToDelete" not in picker.text
+
+
+def test_delete_profile_does_not_clear_other_profiles_cookie(make_client, db):
+    keep = make_client("Keep")
+    victim = make_client("Victim")
+    keep_id = int(keep.cookies["profile_id"])
+    victim_id = int(victim.cookies["profile_id"])
+
+    r = keep.post(f"/profiles/{victim_id}/delete", follow_redirects=False)
+    assert r.status_code == 303
+    assert keep.cookies.get("profile_id") == str(keep_id)
+    assert db.get(Profile, victim_id) is None
 
 
 # --- deck CRUD -----------------------------------------------------------
@@ -223,6 +261,39 @@ def test_choice_card_has_four_options_including_correct(make_client, db):
     r = c.post(f"/study/{sid}/answer", data={"answer": word.ru})
     assert r.status_code == 200
     assert "Верно!" in r.text
+
+
+def test_choice_correct_answer_marks_autoadvance(make_client, db):
+    c = make_client("Alice")
+    deck_id = _seed_deck_id(db)
+    sid = _start(c, deck_id, "choice")
+    word = _first_word(db, sid)
+
+    r = c.post(f"/study/{sid}/answer", data={"answer": word.ru})
+    assert "Верно!" in r.text
+    assert 'data-autoadvance="1200"' in r.text
+
+
+def test_choice_wrong_answer_has_no_autoadvance(make_client, db):
+    c = make_client("Alice")
+    deck_id = _seed_deck_id(db)
+    sid = _start(c, deck_id, "choice")
+    word = _first_word(db, sid)
+
+    r = c.post(f"/study/{sid}/answer", data={"answer": word.ru + "_wrong"})
+    assert "Неверно" in r.text
+    assert "data-autoadvance" not in r.text
+
+
+def test_typed_correct_answer_has_no_autoadvance(make_client, db):
+    c = make_client("Alice")
+    deck_id = _seed_deck_id(db)
+    sid = _start(c, deck_id, "typed")
+    word = _first_word(db, sid)
+
+    r = c.post(f"/study/{sid}/answer", data={"answer": word.ru})
+    assert "Верно!" in r.text
+    assert "data-autoadvance" not in r.text
 
 
 # --- study: match --------------------------------------------------------

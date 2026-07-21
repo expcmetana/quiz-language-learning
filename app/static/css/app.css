@@ -178,6 +178,7 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
   gap: 1.25rem;
   margin: 2rem 0;
 }
+.profile-tile { position: relative; }
 .profile-tile button {
   width: 100%;
   aspect-ratio: 1;
@@ -192,6 +193,18 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
   background: var(--surface);
 }
 .profile-tile button:hover { border-color: var(--accent); background: var(--surface-2); }
+.profile-tile .profile-delete {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 1;
+  color: var(--muted);
+}
+.profile-tile .profile-delete:hover { color: #fff; background: var(--danger, #e5484d); border-color: transparent; }
 .profile-tile .avatar {
   width: 56px; height: 56px;
   border-radius: 50%;

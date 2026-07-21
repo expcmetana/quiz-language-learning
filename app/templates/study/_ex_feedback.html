@@ -24,6 +24,7 @@
   {% endif %}
   <div class="quiz-next-wrap">
     <button class="quiz-next" autofocus
+            {% if sess.mode == "choice" and correct %}data-autoadvance="1200"{% endif %}
             hx-get="/study/{{ sess.id }}/card" hx-target="#card" hx-swap="innerHTML">Дальше</button>
   </div>
   {{ footer() }}
