@@ -1,0 +1,61 @@
+verb,tense,person,answer,choices,hint
+hablar,Imperativo afirmativo,tú,habla,no hables;hablad;hable,говори
+hablar,Imperativo negativo,tú,no hables,habla;hable;no habléis,не говори
+hablar,Imperativo afirmativo,vosotros,hablad,no habléis;habla;hable,говорите
+hablar,Imperativo negativo,vosotros,no habléis,hablad;hable;no hables,не говорите
+comer,Imperativo afirmativo,tú,come,no comas;comed;coma,ешь
+comer,Imperativo negativo,tú,no comas,come;coma;no comáis,не ешь
+comer,Imperativo afirmativo,vosotros,comed,no comáis;come;coma,ешьте
+comer,Imperativo negativo,vosotros,no comáis,comed;coma;no comas,не ешьте
+vivir,Imperativo afirmativo,tú,vive,no vivas;vivid;viva,живи
+vivir,Imperativo negativo,tú,no vivas,vive;viva;no viváis,не живи
+vivir,Imperativo afirmativo,vosotros,vivid,no viváis;vive;viva,живите
+vivir,Imperativo negativo,vosotros,no viváis,vivid;viva;no vivas,не живите
+tener,Imperativo afirmativo,tú,ten,no tengas;tened;tenga,держи
+tener,Imperativo negativo,tú,no tengas,ten;tenga;no tengáis,не держи
+tener,Imperativo afirmativo,vosotros,tened,no tengáis;ten;tenga,держите
+tener,Imperativo negativo,vosotros,no tengáis,tened;tenga;no tengas,не держите
+poner,Imperativo afirmativo,tú,pon,no pongas;poned;ponga,положи
+poner,Imperativo negativo,tú,no pongas,pon;ponga;no pongáis,не клади
+poner,Imperativo afirmativo,vosotros,poned,no pongáis;pon;ponga,положите
+poner,Imperativo negativo,vosotros,no pongáis,poned;ponga;no pongas,не кладите
+salir,Imperativo afirmativo,tú,sal,no salgas;salid;salga,выйди
+salir,Imperativo negativo,tú,no salgas,sal;salga;no salgáis,не выходи
+salir,Imperativo afirmativo,vosotros,salid,no salgáis;sal;salga,выйдите
+salir,Imperativo negativo,vosotros,no salgáis,salid;salga;no salgas,не выходите
+hacer,Imperativo afirmativo,tú,haz,no hagas;haced;haga,сделай
+hacer,Imperativo negativo,tú,no hagas,haz;haga;no hagáis,не делай
+hacer,Imperativo afirmativo,vosotros,haced,no hagáis;haz;haga,сделайте
+hacer,Imperativo negativo,vosotros,no hagáis,haced;haga;no hagas,не делайте
+decir,Imperativo afirmativo,tú,di,no digas;decid;diga,скажи
+decir,Imperativo negativo,tú,no digas,di;diga;no digáis,не говори
+decir,Imperativo afirmativo,vosotros,decid,no digáis;di;diga,скажите
+decir,Imperativo negativo,vosotros,no digáis,decid;diga;no digas,не говорите
+ir,Imperativo afirmativo,tú,ve,no vayas;id;vaya,иди
+ir,Imperativo negativo,tú,no vayas,ve;vaya;no vayáis,не ходи
+ir,Imperativo afirmativo,vosotros,id,no vayáis;ve;vaya,идите
+ir,Imperativo negativo,vosotros,no vayáis,id;vaya;no vayas,не ходите
+ser,Imperativo afirmativo,tú,sé,no seas;sed;sea,будь
+ser,Imperativo negativo,tú,no seas,sé;sea;no seáis,не будь
+ser,Imperativo afirmativo,vosotros,sed,no seáis;sé;sea,будьте
+ser,Imperativo negativo,vosotros,no seáis,sed;sea;no seas,не будьте
+venir,Imperativo afirmativo,tú,ven,no vengas;venid;venga,приди
+venir,Imperativo negativo,tú,no vengas,ven;venga;no vengáis,не приходи
+venir,Imperativo afirmativo,vosotros,venid,no vengáis;ven;venga,придите
+venir,Imperativo negativo,vosotros,no vengáis,venid;venga;no vengas,не приходите
+dar,Imperativo afirmativo,tú,da,no des;dad;dé,дай
+dar,Imperativo negativo,tú,no des,da;dé;no deis,не давай
+dar,Imperativo afirmativo,vosotros,dad,no deis;da;dé,дайте
+dar,Imperativo negativo,vosotros,no deis,dad;dé;no des,не давайте
+volver,Imperativo afirmativo,tú,vuelve,no vuelvas;volved;vuelva,вернись
+volver,Imperativo negativo,tú,no vuelvas,vuelve;vuelva;no volváis,не возвращайся
+volver,Imperativo afirmativo,vosotros,volved,no volváis;vuelve;vuelva,вернитесь
+volver,Imperativo negativo,vosotros,no volváis,volved;vuelva;no vuelvas,не возвращайтесь
+dormir,Imperativo afirmativo,tú,duerme,no duermas;dormid;duerma,спи
+dormir,Imperativo negativo,tú,no duermas,duerme;duerma;no durmáis,не спи
+dormir,Imperativo afirmativo,vosotros,dormid,no durmáis;duerme;duerma,спите
+dormir,Imperativo negativo,vosotros,no durmáis,dormid;duerma;no duermas,не спите
+pensar,Imperativo afirmativo,tú,piensa,no pienses;pensad;piense,думай
+pensar,Imperativo negativo,tú,no pienses,piensa;piense;no penséis,не думай
+pensar,Imperativo afirmativo,vosotros,pensad,no penséis;piensa;piense,думайте
+pensar,Imperativo negativo,vosotros,no penséis,pensad;piense;no pienses,не думайте

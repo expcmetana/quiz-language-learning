@@ -145,5 +145,19 @@
     "level": "B2",
     "file": "irregular_imperativo.csv",
     "description": "Только неправильные формы повелительного наклонения"
+  },
+  {
+    "name": "Imperativo afirmativo y negativo",
+    "kind": "tenses",
+    "level": "B2",
+    "file": "imperativo_afirmativo_negativo.csv",
+    "description": "Контраст утвердительной и отрицательной формы повелительного наклонения (tú/vosotros)"
+  },
+  {
+    "name": "Imperativo con pronombres",
+    "kind": "gap",
+    "level": "B2",
+    "file": "imperativo_pronombres.csv",
+    "description": "Место и слияние местоимений с повелительным наклонением"
   }
 ]
