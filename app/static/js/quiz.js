@@ -20,6 +20,17 @@
     if (btn) {
       var delay = parseInt(btn.dataset.autoadvance, 10) || 1200;
       autoAdvanceTimer = setTimeout(function () { btn.click(); }, delay);
+
+      var track = target.querySelector(".quiz-timer-track");
+      var bar = track && track.querySelector(".quiz-timer-bar");
+      if (track && bar) {
+        track.classList.add("is-active");
+        bar.style.transition = "none";
+        bar.style.width = "100%";
+        void bar.offsetWidth; // force reflow so the transition below actually animates
+        bar.style.transition = "width " + delay + "ms linear";
+        bar.style.width = "0%";
+      }
     }
   });
 

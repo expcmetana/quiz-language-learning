@@ -459,6 +459,16 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
 .quiz-instruction { font-size: 15px; font-weight: 700; color: #fff; }
 .quiz-subtitle { font-size: 12px; color: var(--q-muted); }
 .quiz-header__right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.quiz-timer-track {
+  width: 64px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--q-border);
+  overflow: hidden;
+  visibility: hidden;
+}
+.quiz-timer-track.is-active { visibility: visible; }
+.quiz-timer-bar { height: 100%; width: 100%; background: var(--q-accent); }
 .quiz-progress { display: flex; gap: 4px; }
 .quiz-seg { width: 22px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.12); }
 .quiz-seg.is-filled { background: var(--q-accent); }
