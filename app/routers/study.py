@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from app import srs
 from app.config import settings
 from app.deps import CurrentProfile, DbSession, templates
-from app.models import CardState, Deck, Exercise, ExerciseState, ReviewLog, Word
+from app.models import CardState, Deck, Exercise, ExerciseState, Profile, ReviewLog, Word
 from app.scheduler import build_exercise_session, build_session, exercise_options, pick_distractors
 
 router = APIRouter(prefix="/study")
@@ -145,7 +145,19 @@ def _render_card(request: Request, db: Session, sess: StudySession):
         # (dict() from ordered pairs keeps the final value) for a correct count.
         last_grade = dict(sess.results)
         correct = sum(1 for g in last_grade.values() if g >= 3)
-        ctx = {"sess": sess, "correct": correct, "total": len(last_grade), "deck": db.get(Deck, sess.deck_id)}
+        deck = db.get(Deck, sess.deck_id)
+        profile = db.get(Profile, sess.profile_id)
+        if deck.kind == "vocab":
+            has_more = bool(build_session(db, profile, sess.deck_id, 1))
+        else:
+            has_more = bool(build_exercise_session(db, profile, sess.deck_id, 1))
+        ctx = {
+            "sess": sess,
+            "correct": correct,
+            "total": len(last_grade),
+            "deck": deck,
+            "has_more": has_more,
+        }
         _sessions.pop(sess.id, None)
         return templates.TemplateResponse(request, "study/_summary.html", ctx)
 

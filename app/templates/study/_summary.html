@@ -5,6 +5,15 @@
     <div class="quiz-summary__score">{{ correct }} / {{ total }}</div>
     <div class="quiz-summary__pct">{% if total %}{{ (100 * correct / total) | round | int }}%{% else %}—{% endif %} правильных</div>
     <div class="quiz-summary__meter"><span style="width: {% if total %}{{ (100 * correct / total) | round | int }}{% else %}0{% endif %}%;"></span></div>
-    <a class="quiz-next" href="/dashboard">К обзору</a>
+    <div class="quiz-summary__actions">
+      {% if has_more %}
+      <form method="post" action="/study/start">
+        <input type="hidden" name="deck_id" value="{{ deck.id }}">
+        <input type="hidden" name="mode" value="{{ sess.mode }}">
+        <button class="quiz-next" type="submit">Продолжить обучение</button>
+      </form>
+      {% endif %}
+      <a class="{{ 'quiz-next quiz-next--ghost' if has_more else 'quiz-next' }}" href="/dashboard">К обзору</a>
+    </div>
   </div>
 </div>

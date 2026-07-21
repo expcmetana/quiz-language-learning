@@ -675,6 +675,13 @@ button.quiz-option:hover {
 }
 .quiz-summary__meter span { display: block; height: 100%; background: var(--q-accent); border-radius: 4px; }
 .quiz-summary .quiz-next { display: inline-block; }
+.quiz-summary__actions { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.quiz-next--ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--q-muted);
+}
+.quiz-next--ghost:hover { color: #fff; border-color: rgba(255, 255, 255, 0.35); }
 
 /* Match game restyle under the dark quiz palette */
 .quiz-screen #match-container { padding: 24px 24px 8px; }

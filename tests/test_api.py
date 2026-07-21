@@ -296,6 +296,47 @@ def test_typed_correct_answer_has_no_autoadvance(make_client, db):
     assert "data-autoadvance" not in r.text
 
 
+# --- study: summary / continue --------------------------------------------
+
+def _finish_typed_session(c, db, sid):
+    """Answer every card correctly until the queue is drained, then fetch the
+    summary partial (only a GET /card renders it, never the answer POST)."""
+    while True:
+        sess = study._sessions.get(sid)
+        if sess is None or sess.index >= len(sess.queue):
+            break
+        word = _first_word(db, sid)
+        c.post(f"/study/{sid}/answer", data={"answer": word.ru})
+    return c.get(f"/study/{sid}/card")
+
+
+def test_summary_offers_continue_when_deck_has_more_words(make_client, db):
+    c = make_client("Alice")
+    deck_id = _seed_deck_id(db)  # seed deck has ~223 words, SESSION_SIZE=20 in tests
+    sid = _start(c, deck_id, "typed")
+
+    r = _finish_typed_session(c, db, sid)
+
+    assert "Сессия завершена" in r.text
+    assert "Продолжить обучение" in r.text
+    assert f'value="{deck_id}"' in r.text
+    assert 'value="typed"' in r.text
+
+
+def test_summary_hides_continue_when_deck_fully_exhausted(make_client, db):
+    c = make_client("Alice")
+    r = c.post("/decks", data={"name": "Tiny Deck"}, follow_redirects=False)
+    deck_id = int(r.headers["location"].rsplit("/", 1)[-1])
+    c.post(f"/decks/{deck_id}/words", data={"es": "gato", "ru": "кот", "example": ""})
+    c.post(f"/decks/{deck_id}/words", data={"es": "perro", "ru": "собака", "example": ""})
+
+    sid = _start(c, deck_id, "typed")
+    r = _finish_typed_session(c, db, sid)
+
+    assert "Сессия завершена" in r.text
+    assert "Продолжить обучение" not in r.text
+
+
 # --- study: match --------------------------------------------------------
 
 def test_match_flow_writes_logs_for_all_queue_words(make_client, db):
