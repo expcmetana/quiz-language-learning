@@ -3,6 +3,19 @@
 A local, self-hosted Spanish → Russian language trainer with SM-2 spaced repetition
 (FastAPI + SQLAlchemy + SQLite, server-rendered UI with HTMX).
 
+## Screenshots
+
+| | |
+| --- | --- |
+| ![Multiple choice](docs/screenshots/quiz-choice-question.png) | ![Correct-answer feedback with auto-advance timer](docs/screenshots/quiz-choice-feedback.png) |
+| Multiple choice — a correct answer auto-advances after a short countdown (top-right of the header) | |
+| ![Flashcards](docs/screenshots/quiz-flashcards.png) | ![Session summary with continue option](docs/screenshots/quiz-summary.png) |
+| Flashcards (self-graded) | Session summary — offers to continue if the deck has more due/unseen cards |
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Stats](docs/screenshots/stats.png) |
+| Dashboard — progress per learning block | Stats — accuracy by mode, hardest words |
+
+More screens (profile picker, block/mode selector) are in [`docs/screenshots/`](docs/screenshots/).
+
 ## Features
 
 - **Learning blocks with CEFR levels (A1–B2)**: Top-1000 frequency words split by
@@ -76,6 +89,15 @@ mkdir -p ~/.quiz-language-learning && cp ./data/app.db ~/.quiz-language-learning
 | `QUIZ_DATA_DIR` | `~/.quiz-language-learning` | (docker-compose only) host directory bind-mounted to `/data` |
 | `SESSION_SIZE` | `20` | Max cards per study session |
 | `SEED_DIR` | `./seed` | Directory with `blocks.json` + content CSVs |
+
+## Adding content
+
+Vocab decks, conjugation drills, and gap-fill exercises are all plain CSV
+under `seed/`, registered in `seed/blocks.json`. Adding a new block is a
+content-only change — no code or migration needed. See
+[`docs/content-authoring.md`](docs/content-authoring.md) for the manifest
+format, the three CSV schemas (`vocab` / `tenses` / `gap`), and how to
+validate a new file before shipping it.
 
 ## Local development
 
