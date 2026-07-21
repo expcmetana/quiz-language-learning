@@ -25,3 +25,26 @@
 {% macro sentence(highlight, fallback) %}
 <div class="quiz-sentence">{% if highlight %}{{ highlight[0] }}<span class="quiz-hl">{{ highlight[1] }}</span>{{ highlight[2] }}{% else %}{{ fallback }}{% endif %}</div>
 {% endmacro %}
+
+{% macro vocab_question(word, highlight) %}
+<div class="quiz-question">
+  <div class="quiz-pill"><span class="quiz-pill__text">{{ word.es }}</span></div>
+  {% if word.example %}{{ sentence(highlight, word.example) }}{% endif %}
+  {% if caller %}{{ caller() }}{% endif %}
+</div>
+{% endmacro %}
+
+{% macro exercise_question(exercise, highlight) %}
+<div class="quiz-question">
+  {% if exercise.type == "gap" %}
+    <div class="quiz-pill"><span class="quiz-pill__text">___</span></div>
+    {{ sentence(highlight, exercise.prompt) }}
+  {% else %}
+    {% set parts = exercise.prompt.split(' · ') %}
+    <div class="quiz-pill"><span class="quiz-pill__text">{{ parts[0] }}</span></div>
+    {% if parts | length > 1 %}<div class="quiz-sentence">{{ parts[1:] | join(' · ') }}</div>{% endif %}
+  {% endif %}
+  {% if exercise.hint %}<div class="quiz-gloss">{{ exercise.hint }}</div>{% endif %}
+  {% if caller %}{{ caller() }}{% endif %}
+</div>
+{% endmacro %}

@@ -203,7 +203,7 @@ def test_flashcards_returns_next_card_not_feedback(make_client, db):
 
     r = c.post(f"/study/{sid}/answer", data={"grade": 4})
     assert r.status_code == 200
-    assert "grade-buttons" in r.text  # next flashcard rendered
+    assert "quiz-grades" in r.text  # next flashcard rendered
     assert "verdict" not in r.text    # not the feedback partial
 
 

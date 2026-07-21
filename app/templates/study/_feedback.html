@@ -1,12 +1,11 @@
-{% from "study/_quiz.html" import header, footer, sentence %}
-{% if options %}
+{% from "study/_quiz.html" import header, footer, vocab_question %}
+{% set instruction = "Введите перевод" if sess.mode == "typed" else "Выберите перевод" %}
 <div class="quiz-screen">
-  {{ header(sess, deck, "Выберите перевод", position, total) }}
-  <div class="quiz-question">
-    <div class="quiz-pill"><span class="quiz-pill__text">{{ word.es }}</span></div>
-    {% if word.example %}{{ sentence(highlight, word.example) }}{% endif %}
+  {{ header(sess, deck, instruction, position, total) }}
+  {% call vocab_question(word, highlight) %}
     <div class="quiz-verdict {{ 'ok' if correct else 'bad' }}">{{ 'Верно!' if correct else 'Неверно' }}</div>
-  </div>
+  {% endcall %}
+  {% if options %}
   <div class="quiz-grid">
     {% for opt in options %}
     {% set is_correct = (opt == word.ru) %}
@@ -16,25 +15,15 @@
     </div>
     {% endfor %}
   </div>
+  {% else %}
+  <div class="quiz-reveal-wrap">
+    <div class="quiz-reveal">{{ word.ru }}</div>
+    {% if not correct and given %}<div class="quiz-given">Ваш ответ: {{ given }}</div>{% endif %}
+  </div>
+  {% endif %}
   <div class="quiz-next-wrap">
     <button class="quiz-next" autofocus
             hx-get="/study/{{ sess.id }}/card" hx-target="#card" hx-swap="innerHTML">Дальше</button>
   </div>
   {{ footer() }}
 </div>
-{% else %}
-<div class="flashcard feedback">
-  {% if correct %}
-    <div class="verdict ok">Верно!</div>
-  {% else %}
-    <div class="verdict bad">Неверно</div>
-  {% endif %}
-  <div class="word-es">{{ word.es }}</div>
-  <div class="word-ru">{{ word.ru }}</div>
-  {% if not correct and given %}
-    <div class="muted small">Ваш ответ: {{ given }}</div>
-  {% endif %}
-  <button class="primary" autofocus
-          hx-get="/study/{{ sess.id }}/card" hx-target="#card" hx-swap="innerHTML">Дальше</button>
-</div>
-{% endif %}

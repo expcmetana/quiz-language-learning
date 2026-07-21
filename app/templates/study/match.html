@@ -1,17 +1,23 @@
 {% extends "base.html" %}
 {% block title %}{{ deck.name }} — Найти пары{% endblock %}
 {% block content %}
-<div class="study-wrap stack">
-  <div class="row">
-    <h1 style="margin:0;">{{ deck.name }}</h1>
-    <span class="badge">Найти пары</span>
-    <span class="spacer" style="flex:1;"></span>
-    <a class="btn btn-sm btn-ghost" href="/dashboard">Прервать</a>
+<div class="quiz-screen">
+  <div class="quiz-header">
+    <div class="quiz-header__left">
+      <div class="quiz-badge">{{ words|length }}</div>
+      <div class="quiz-titles">
+        <div class="quiz-instruction">Найдите пары</div>
+        <div class="quiz-subtitle">{{ deck.name }} · {{ words|length }} пар</div>
+      </div>
+    </div>
+    <div class="quiz-header__right">
+      <a class="quiz-abort" href="/dashboard">Прервать</a>
+    </div>
   </div>
-  <p class="muted small">Соедините испанские слова с их переводами.</p>
   <div id="match-container">
     <div id="match-grid" class="match-grid"></div>
   </div>
+  <div class="quiz-footer">Esc — прервать</div>
 </div>
 
 <script>

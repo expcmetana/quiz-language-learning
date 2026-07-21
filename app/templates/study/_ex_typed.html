@@ -1,10 +1,12 @@
-<div class="pos">{{ position }} / {{ total }}</div>
-<div class="flashcard" style="min-height:auto;">
-  <div class="ex-prompt">{{ exercise.prompt }}</div>
-  {% if exercise.hint %}<div class="ex-hint muted small">{{ exercise.hint }}</div>{% endif %}
+{% from "study/_quiz.html" import header, exercise_question %}
+{% if exercise.type == "gap" %}{% set instruction = "Введите пропущенное слово" %}{% else %}{% set instruction = "Введите правильную форму глагола" %}{% endif %}
+<div class="quiz-screen">
+  {{ header(sess, deck, instruction, position, total) }}
+  {{ exercise_question(exercise, highlight) }}
+  <form class="quiz-input-wrap"
+        hx-post="/study/{{ sess.id }}/answer" hx-target="#card" hx-swap="innerHTML">
+    <input class="quiz-input" name="answer" autocomplete="off" autofocus>
+    <button class="quiz-next" type="submit">Проверить</button>
+  </form>
+  <div class="quiz-footer">Enter — проверить · Esc — прервать</div>
 </div>
-<form class="row" style="margin-top:1.25rem;"
-      hx-post="/study/{{ sess.id }}/answer" hx-target="#card" hx-swap="innerHTML">
-  <input name="answer" placeholder="Ваш ответ" autocomplete="off" autofocus style="flex:1;">
-  <button class="primary">Проверить</button>
-</form>

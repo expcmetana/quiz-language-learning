@@ -1,18 +1,20 @@
-<div class="pos">{{ position }} / {{ total }}</div>
-<div class="flashcard">
-  <div class="word-es">{{ word.es }}</div>
-  {% if word.example %}<div class="example">{{ word.example }}</div>{% endif %}
-
-  <input type="checkbox" id="flip-{{ sess.id }}-{{ position }}" class="flip-toggle">
-  <label for="flip-{{ sess.id }}-{{ position }}" class="btn flip-label">Показать перевод</label>
-
-  <div class="flip-back">
-    <div class="word-ru">{{ word.ru }}</div>
+{% from "study/_quiz.html" import header, vocab_question %}
+<div class="quiz-screen">
+  {{ header(sess, deck, "Вспомните перевод", position, total) }}
+  {{ vocab_question(word, highlight) }}
+  <input type="checkbox" id="flip-{{ sess.id }}-{{ position }}" class="quiz-flip-toggle">
+  <div class="quiz-flip-wrap">
+    <label for="flip-{{ sess.id }}-{{ position }}" class="quiz-flip-label">Показать перевод</label>
   </div>
-  <div class="grade-buttons">
-    <button class="g-again" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 2}' hx-target="#card" hx-swap="innerHTML">Снова</button>
-    <button class="g-hard" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 3}' hx-target="#card" hx-swap="innerHTML">Трудно</button>
-    <button class="g-good" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 4}' hx-target="#card" hx-swap="innerHTML">Хорошо</button>
-    <button class="g-easy" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 5}' hx-target="#card" hx-swap="innerHTML">Легко</button>
+  <div class="quiz-flip-back">
+    <div class="quiz-reveal">{{ word.ru }}</div>
+    <div class="quiz-grades">
+      <button class="quiz-grade g-again" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 2}' hx-target="#card" hx-swap="innerHTML">Снова</button>
+      <button class="quiz-grade g-hard" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 3}' hx-target="#card" hx-swap="innerHTML">Трудно</button>
+      <button class="quiz-grade g-good" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 4}' hx-target="#card" hx-swap="innerHTML">Хорошо</button>
+      <button class="quiz-grade g-easy" hx-post="/study/{{ sess.id }}/answer" hx-vals='{"grade": 5}' hx-target="#card" hx-swap="innerHTML">Легко</button>
+    </div>
   </div>
+  <div class="quiz-footer quiz-footer--flip-front">Пробел — показать перевод · Esc — прервать</div>
+  <div class="quiz-footer quiz-footer--flip-back">1–4 — оценить · Esc — прервать</div>
 </div>

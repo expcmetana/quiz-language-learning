@@ -1,23 +1,13 @@
-{% from "study/_quiz.html" import header, footer, sentence %}
+{% from "study/_quiz.html" import header, footer, exercise_question %}
 {% if exercise.type == "gap" %}{% set instruction = "Выберите пропущенное слово" %}{% else %}{% set instruction = "Выберите правильную форму глагола" %}{% endif %}
 <div class="quiz-screen">
   {{ header(sess, deck, instruction, position, total) }}
-  <div class="quiz-question">
-    {% if exercise.type == "gap" %}
-      <div class="quiz-pill"><span class="quiz-pill__text">___</span></div>
-      {{ sentence(highlight, exercise.prompt) }}
-    {% else %}
-      {% set parts = exercise.prompt.split(' · ') %}
-      <div class="quiz-pill"><span class="quiz-pill__text">{{ parts[0] }}</span></div>
-      {% if parts | length > 1 %}<div class="quiz-sentence">{{ parts[1:] | join(' · ') }}</div>{% endif %}
-    {% endif %}
-    {% if exercise.hint %}<div class="quiz-gloss">{{ exercise.hint }}</div>{% endif %}
-  </div>
+  {{ exercise_question(exercise, highlight) }}
   <div class="quiz-grid">
     {% for opt in options %}
     <button class="quiz-option"
             hx-post="/study/{{ sess.id }}/answer"
-            hx-vals='{{ {"answer": opt, "options": options} | tojson }}'
+            hx-vals='{{ {"answer": opt, "options": options | tojson} | tojson }}'
             hx-target="#card" hx-swap="innerHTML">
       <span class="quiz-num">{{ loop.index }}</span><span class="quiz-opt-text">{{ opt }}</span>
     </button>

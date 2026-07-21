@@ -1,6 +1,10 @@
-<div class="flashcard">
-  <div class="verdict ok" style="font-size:1.4rem;">Сессия завершена</div>
-  <div class="word-es">{{ correct }} / {{ total }}</div>
-  <div class="muted">правильных ответов</div>
-  <a class="btn btn-primary" href="/dashboard">К обзору</a>
+<div class="quiz-screen">
+  <div class="quiz-summary">
+    <div class="quiz-summary__label">Сессия завершена</div>
+    {% if deck %}<div class="quiz-summary__deck">{{ deck.name }}</div>{% endif %}
+    <div class="quiz-summary__score">{{ correct }} / {{ total }}</div>
+    <div class="quiz-summary__pct">{% if total %}{{ (100 * correct / total) | round | int }}%{% else %}—{% endif %} правильных</div>
+    <div class="quiz-summary__meter"><span style="width: {% if total %}{{ (100 * correct / total) | round | int }}{% else %}0{% endif %}%;"></span></div>
+    <a class="quiz-next" href="/dashboard">К обзору</a>
+  </div>
 </div>

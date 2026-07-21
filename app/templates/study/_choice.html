@@ -1,15 +1,12 @@
-{% from "study/_quiz.html" import header, footer, sentence %}
+{% from "study/_quiz.html" import header, footer, vocab_question %}
 <div class="quiz-screen">
   {{ header(sess, deck, "Выберите перевод", position, total) }}
-  <div class="quiz-question">
-    <div class="quiz-pill"><span class="quiz-pill__text">{{ word.es }}</span></div>
-    {% if word.example %}{{ sentence(highlight, word.example) }}{% endif %}
-  </div>
+  {{ vocab_question(word, highlight) }}
   <div class="quiz-grid">
     {% for opt in options %}
     <button class="quiz-option"
             hx-post="/study/{{ sess.id }}/answer"
-            hx-vals='{{ {"answer": opt, "options": options} | tojson }}'
+            hx-vals='{{ {"answer": opt, "options": options | tojson} | tojson }}'
             hx-target="#card" hx-swap="innerHTML">
       <span class="quiz-num">{{ loop.index }}</span><span class="quiz-opt-text">{{ opt }}</span>
     </button>

@@ -145,28 +145,40 @@ def _render_card(request: Request, db: Session, sess: StudySession):
         # (dict() from ordered pairs keeps the final value) for a correct count.
         last_grade = dict(sess.results)
         correct = sum(1 for g in last_grade.values() if g >= 3)
-        ctx = {"sess": sess, "correct": correct, "total": len(last_grade)}
+        ctx = {"sess": sess, "correct": correct, "total": len(last_grade), "deck": db.get(Deck, sess.deck_id)}
         _sessions.pop(sess.id, None)
         return templates.TemplateResponse(request, "study/_summary.html", ctx)
 
     deck = db.get(Deck, sess.deck_id)
     if sess.item_kind == "exercise":
         exercise = item
-        ctx = {"sess": sess, "exercise": exercise, "deck": deck, "position": sess.index + 1, "total": len(sess.queue)}
+        ctx = {
+            "sess": sess,
+            "exercise": exercise,
+            "deck": deck,
+            "position": sess.index + 1,
+            "total": len(sess.queue),
+            "highlight": _split_highlight(exercise.prompt, "___") if exercise.type == "gap" else None,
+        }
         if sess.mode == "choice":
             options = exercise_options(exercise) + [exercise.answer]
             random.shuffle(options)
             ctx["options"] = options
-            ctx["highlight"] = _split_highlight(exercise.prompt, "___") if exercise.type == "gap" else None
         return templates.TemplateResponse(request, f"study/_ex_{sess.mode}.html", ctx)
 
     word = item
-    ctx = {"sess": sess, "word": word, "deck": deck, "position": sess.index + 1, "total": len(sess.queue)}
+    ctx = {
+        "sess": sess,
+        "word": word,
+        "deck": deck,
+        "position": sess.index + 1,
+        "total": len(sess.queue),
+        "highlight": _split_highlight(word.example, word.es) if word.example else None,
+    }
     if sess.mode == "choice":
         options = pick_distractors(db, word) + [word.ru]
         random.shuffle(options)
         ctx["options"] = options
-        ctx["highlight"] = _split_highlight(word.example, word.es) if word.example else None
     return templates.TemplateResponse(request, f"study/_{sess.mode}.html", ctx)
 
 

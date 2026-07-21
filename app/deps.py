@@ -1,3 +1,4 @@
+import hashlib
 from pathlib import Path
 from typing import Annotated
 
@@ -8,7 +9,25 @@ from sqlalchemy.orm import Session
 from app.db import get_db
 from app.models import Profile
 
-templates = Jinja2Templates(directory=Path(__file__).parent / "templates")
+_APP_DIR = Path(__file__).parent
+
+templates = Jinja2Templates(directory=_APP_DIR / "templates")
+
+_static_versions: dict[str, str] = {}
+
+
+def static_url(path: str) -> str:
+    """/static URL with a content-hash query param so browsers re-fetch
+    changed CSS/JS after a deploy instead of serving a stale cached copy."""
+    v = _static_versions.get(path)
+    if v is None:
+        file = _APP_DIR / "static" / path.lstrip("/")
+        v = hashlib.md5(file.read_bytes()).hexdigest()[:8] if file.is_file() else "0"
+        _static_versions[path] = v
+    return f"/static/{path.lstrip('/')}?v={v}"
+
+
+templates.env.globals["static_url"] = static_url
 
 DbSession = Annotated[Session, Depends(get_db)]
 
