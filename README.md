@@ -115,4 +115,9 @@ uv run pytest
 ## CI / releases
 
 - `ci.yml` — tests + Docker build check on every push/PR to `main`
-- `release.yml` — on tag `v*`: tests, image push to GHCR, GitHub Release
+- `auto-release.yml` — on every push to `main` that isn't docs-only: bumps
+  the patch version (`vX.Y.Z` → `vX.Y.Z+1`, starting at `v0.1.0`), tags it,
+  and runs `release.yml` against that tag
+- `release.yml` — tests, image push to GHCR, GitHub Release. Triggered
+  either by `auto-release.yml` or by manually pushing a `v*` tag (e.g. for a
+  deliberate major/minor bump: `git tag v1.0.0 && git push origin v1.0.0`)
