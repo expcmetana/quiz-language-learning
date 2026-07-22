@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Form, HTTPException, Request
 from fastapi.responses import RedirectResponse
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app import srs
@@ -194,13 +195,9 @@ def _render_card(request: Request, db: Session, sess: StudySession):
     return templates.TemplateResponse(request, f"study/_{sess.mode}.html", ctx)
 
 
-@router.post("/start")
-def start_session(db: DbSession, profile: CurrentProfile, deck_id: int = Form(...), mode: str = Form(...)):
-    if mode not in MODES:
-        raise HTTPException(400, f"Unknown mode: {mode}")
-    deck = db.get(Deck, deck_id)
-    if deck is None:
-        raise HTTPException(404, "Deck not found")
+def _build_session_for(db: Session, profile: Profile, deck: Deck, mode: str) -> StudySession | None:
+    """Resolve `mode` (a concrete mode or "random") against `deck` and build a
+    StudySession, or None if the deck has no due/new items to offer right now."""
     allowed = MODES_BY_KIND.get(deck.kind, MODES_BY_KIND["vocab"])
     if mode == "random":
         mode = random.choice(sorted(allowed))
@@ -209,24 +206,51 @@ def start_session(db: DbSession, profile: CurrentProfile, deck_id: int = Form(..
 
     if deck.kind == "vocab":
         item_kind = "word"
-        items = build_session(db, profile, deck_id, settings.session_size)
+        items = build_session(db, profile, deck.id, settings.session_size)
     else:
         item_kind = "exercise"
-        items = build_exercise_session(db, profile, deck_id, settings.session_size)
+        items = build_exercise_session(db, profile, deck.id, settings.session_size)
     if not items:
-        return RedirectResponse(f"/blocks/{deck_id}?empty=1", status_code=303)
+        return None
     if mode == "match":
         items = items[:MATCH_PAIRS]
     sess = StudySession(
         id=uuid.uuid4().hex,
         profile_id=profile.id,
-        deck_id=deck_id,
+        deck_id=deck.id,
         mode=mode,
         queue=[item.id for item in items],
         item_kind=item_kind,
     )
     _sessions[sess.id] = sess
+    return sess
+
+
+@router.post("/start")
+def start_session(db: DbSession, profile: CurrentProfile, deck_id: int = Form(...), mode: str = Form(...)):
+    if mode not in MODES:
+        raise HTTPException(400, f"Unknown mode: {mode}")
+    deck = db.get(Deck, deck_id)
+    if deck is None:
+        raise HTTPException(404, "Deck not found")
+
+    sess = _build_session_for(db, profile, deck, mode)
+    if sess is None:
+        return RedirectResponse(f"/blocks/{deck_id}?empty=1", status_code=303)
     return RedirectResponse(f"/study/{sess.id}", status_code=303)
+
+
+@router.post("/start-random")
+def start_random_session(db: DbSession, profile: CurrentProfile):
+    """Pick a random deck (skipping any with nothing due/new right now) and a
+    random mode for it, then jump straight into a session."""
+    decks = list(db.execute(select(Deck)).scalars().all())
+    random.shuffle(decks)
+    for deck in decks:
+        sess = _build_session_for(db, profile, deck, "random")
+        if sess is not None:
+            return RedirectResponse(f"/study/{sess.id}", status_code=303)
+    return RedirectResponse("/dashboard?empty=1", status_code=303)
 
 
 @router.get("/{sid}")

@@ -97,7 +97,7 @@ def delete_profile(profile_id: int, request: Request, db: DbSession):
 
 
 @router.get("/dashboard")
-def dashboard(request: Request, db: DbSession, profile: CurrentProfile):
+def dashboard(request: Request, db: DbSession, profile: CurrentProfile, empty: str | None = None):
     now = datetime.now(timezone.utc)
     decks = db.execute(select(Deck).order_by(Deck.name)).scalars().all()
 
@@ -119,5 +119,11 @@ def dashboard(request: Request, db: DbSession, profile: CurrentProfile):
     return templates.TemplateResponse(
         request,
         "dashboard.html",
-        {"profile": profile, "blocks": blocks, "deck_stats": deck_stats, "reviews_today": reviews_today},
+        {
+            "profile": profile,
+            "blocks": blocks,
+            "deck_stats": deck_stats,
+            "reviews_today": reviews_today,
+            "empty": bool(empty),
+        },
     )

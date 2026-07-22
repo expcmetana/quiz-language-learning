@@ -3,7 +3,7 @@
 import io
 from datetime import datetime, timedelta, timezone
 
-from sqlalchemy import func, select
+from sqlalchemy import delete, func, select
 
 from app.models import CardState, Deck, Exercise, Profile, ReviewLog, Word
 from app.routers import study
@@ -381,6 +381,34 @@ def test_random_mode_resolves_within_deck_kind_only(make_client, db):
         sess = study._sessions[sid]
         assert sess.mode in {"choice", "typed"}  # tenses decks never offer flashcards/match
         study._sessions.pop(sid, None)
+
+
+def test_start_random_picks_among_available_decks(make_client, db):
+    c = make_client("Alice")
+    r = c.post("/decks", data={"name": "Second Deck"}, follow_redirects=False)
+    deck2_id = int(r.headers["location"].rsplit("/", 1)[-1])
+    c.post(f"/decks/{deck2_id}/words", data={"es": "gato", "ru": "кот", "example": ""})
+
+    seen_decks = set()
+    for _ in range(20):
+        r = c.post("/study/start-random", follow_redirects=False)
+        assert r.status_code == 303
+        sid = r.headers["location"].rsplit("/", 1)[-1]
+        sess = study._sessions[sid]
+        seen_decks.add(sess.deck_id)
+        study._sessions.pop(sid, None)
+
+    assert len(seen_decks) > 1  # both the seed deck and the new one get picked eventually
+
+
+def test_start_random_redirects_to_dashboard_when_nothing_available(make_client, db):
+    c = make_client("Alice")
+    db.execute(delete(Deck))
+    db.commit()
+
+    r = c.post("/study/start-random", follow_redirects=False)
+    assert r.status_code == 303
+    assert r.headers["location"] == "/dashboard?empty=1"
 
 
 # --- study: match --------------------------------------------------------
