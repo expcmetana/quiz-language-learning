@@ -515,6 +515,19 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
   font-weight: 600;
   font-style: normal;
 }
+.quiz-meta { margin: 18px auto 0; display: flex; justify-content: center; gap: 8px; }
+.quiz-meta__tense,
+.quiz-meta__pronoun {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--q-accent-border);
+}
+.quiz-meta__tense { background: var(--q-accent-fill); color: var(--q-accent); }
+.quiz-meta__pronoun { background: var(--q-hl); color: #fff; }
 .quiz-gloss { max-width: 640px; margin: 10px auto 0; font-size: 12px; color: var(--q-muted); }
 .quiz-verdict { margin-top: 20px; font-size: 18px; font-weight: 700; }
 .quiz-verdict.ok { color: var(--green); }

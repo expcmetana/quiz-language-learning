@@ -43,7 +43,12 @@
   {% else %}
     {% set parts = exercise.prompt.split(' · ') %}
     <div class="quiz-pill"><span class="quiz-pill__text">{{ parts[0] }}</span></div>
-    {% if parts | length > 1 %}<div class="quiz-sentence">{{ parts[1:] | join(' · ') }}</div>{% endif %}
+    {% if parts | length > 2 %}
+    <div class="quiz-meta">
+      <span class="quiz-meta__tense">{{ parts[1] }}</span>
+      <span class="quiz-meta__pronoun">{{ parts[2] }}</span>
+    </div>
+    {% endif %}
   {% endif %}
   {% if exercise.hint %}<div class="quiz-gloss">{{ exercise.hint }}</div>{% endif %}
   {% if caller %}{{ caller() }}{% endif %}
