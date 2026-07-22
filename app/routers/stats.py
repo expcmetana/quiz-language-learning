@@ -56,12 +56,15 @@ def stats(request: Request, db: DbSession, profile: CurrentProfile):
     ).all()
     by_mode = []
     for m in mode_rows:
+        correct = m.correct or 0
         by_mode.append(
             {
                 "mode": m.mode,
                 "label": MODE_LABELS.get(m.mode, m.mode),
                 "count": m.count,
-                "accuracy": (m.correct or 0) / m.count if m.count else 0.0,
+                "correct": correct,
+                "failed": m.count - correct,
+                "accuracy": correct / m.count if m.count else 0.0,
             }
         )
     by_mode.sort(key=lambda x: x["count"], reverse=True)

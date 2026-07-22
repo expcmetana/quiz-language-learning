@@ -17,12 +17,14 @@
 {% if by_mode %}
 <div class="table-wrap card" style="padding:0.5rem;">
   <table>
-    <thead><tr><th>Режим</th><th>Ответов</th><th>Точность</th></tr></thead>
+    <thead><tr><th>Режим</th><th>Ответов</th><th>Верно</th><th>Неверно</th><th>Точность</th></tr></thead>
     <tbody>
       {% for m in by_mode %}
         <tr>
           <td>{{ m.label }}</td>
           <td>{{ m.count }}</td>
+          <td class="ok">{{ m.correct }}</td>
+          <td class="bad">{{ m.failed }}</td>
           <td>{{ (100 * m.accuracy) | round | int }}%</td>
         </tr>
       {% endfor %}
