@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest an idea for this project
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Content (vocab/decks/exercises)
+        - Study modes / UI
+        - Stats / progress
+        - Deployment / Docker
+        - Other
+    validations:
+      required: false

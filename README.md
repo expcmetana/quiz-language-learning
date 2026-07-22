@@ -121,3 +121,13 @@ uv run pytest
 - `release.yml` — tests, image push to GHCR, GitHub Release. Triggered
   either by `auto-release.yml` or by manually pushing a `v*` tag (e.g. for a
   deliberate major/minor bump: `git tag v1.0.0 && git push origin v1.0.0`)
+- Release notes are auto-generated from merged PRs, grouped by label
+  (`enhancement`, `bug`, `documentation`) per `.github/release.yml` — label
+  PRs accordingly so the changelog stays readable
+
+## Contributing
+
+Bug reports and feature requests: use the issue templates. PRs: fill in the
+checklist in the PR template (tests pass, verified locally, docs updated,
+labeled for the changelog) — see [Local development](#local-development)
+above to get set up.
