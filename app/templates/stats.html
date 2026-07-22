@@ -6,9 +6,12 @@
 <h2>Повторения за 30 дней <span class="muted small">(всего {{ total_reviews }})</span></h2>
 <div class="barchart">
   {% for d in per_day %}
-    <div class="bar {{ 'empty' if d.count == 0 }}"
+    <div class="bar-col {{ 'empty' if d.count == 0 }}"
          style="height: {{ (100 * d.count / max_count) if max_count else 0 }}%;"
-         title="{{ d.date.isoformat() }}: {{ d.count }} повт., точность {{ (100 * d.accuracy) | round | int }}%"></div>
+         title="{{ d.date.isoformat() }}: {{ d.count }} повт. ({{ d.correct }} верно, {{ d.failed }} неверно), точность {{ (100 * d.accuracy) | round | int }}%">
+      <div class="bar-seg bad" style="height: {{ (100 * d.failed / d.count) if d.count else 0 }}%;"></div>
+      <div class="bar-seg ok" style="height: {{ (100 * d.correct / d.count) if d.count else 0 }}%;"></div>
+    </div>
   {% endfor %}
 </div>
 <p class="muted small">{{ per_day[0].date.strftime('%d.%m') }} — {{ per_day[-1].date.strftime('%d.%m') }}</p>

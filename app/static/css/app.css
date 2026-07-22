@@ -300,16 +300,19 @@ td.bad { color: var(--red); font-weight: 600; }
   border-radius: var(--radius);
   overflow-x: auto;
 }
-.barchart .bar {
+.barchart .bar-col {
   flex: 1;
   min-width: 8px;
-  background: var(--accent);
-  border-radius: 3px 3px 0 0;
   align-self: flex-end;
-  transition: background 0.15s;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
 }
-.barchart .bar:hover { background: var(--accent-2); }
-.barchart .bar.empty { background: var(--surface-2); }
+.barchart .bar-col.empty { background: var(--surface-2); }
+.barchart .bar-seg.ok { background: var(--green); }
+.barchart .bar-seg.bad { background: var(--red); }
+.barchart .bar-col:hover .bar-seg { filter: brightness(1.2); }
 
 /* ---------- Section headings ---------- */
 .section-heading {

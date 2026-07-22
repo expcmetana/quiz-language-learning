@@ -41,7 +41,15 @@ def stats(request: Request, db: DbSession, profile: CurrentProfile):
         key = d.isoformat()
         count, correct = by_day.get(key, (0, 0))
         accuracy = (correct / count) if count else 0.0
-        per_day.append({"date": d, "count": count, "accuracy": accuracy})
+        per_day.append(
+            {
+                "date": d,
+                "count": count,
+                "correct": correct,
+                "failed": count - correct,
+                "accuracy": accuracy,
+            }
+        )
     max_count = max((p["count"] for p in per_day), default=0)
 
     # (b) accuracy by mode
