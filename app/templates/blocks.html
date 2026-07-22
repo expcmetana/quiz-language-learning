@@ -6,6 +6,7 @@
   'choice': 'Выбор варианта',
   'typed': 'Написать ответ',
   'match': 'Найти пары',
+  'random': '🎲 Случайный режим',
 } %}
 
 {% block content %}
@@ -51,7 +52,7 @@
     <form method="post" action="/study/start">
       <input type="hidden" name="deck_id" value="{{ deck.id }}">
       <input type="hidden" name="mode" value="{{ mode }}">
-      <button class="mode-btn primary" type="submit">{{ mode_labels.get(mode, mode) }}</button>
+      <button class="mode-btn{{ ' mode-btn--random' if mode == 'random' else ' primary' }}" type="submit">{{ mode_labels.get(mode, mode) }}</button>
     </form>
   {% endfor %}
 </div>

@@ -16,7 +16,7 @@ from app.scheduler import build_exercise_session, build_session, exercise_option
 
 router = APIRouter(prefix="/study")
 
-MODES = {"flashcards", "choice", "typed", "match"}
+MODES = {"flashcards", "choice", "typed", "match", "random"}
 MODES_BY_KIND = {
     "vocab": {"flashcards", "choice", "typed", "match"},
     "tenses": {"choice", "typed"},
@@ -202,7 +202,9 @@ def start_session(db: DbSession, profile: CurrentProfile, deck_id: int = Form(..
     if deck is None:
         raise HTTPException(404, "Deck not found")
     allowed = MODES_BY_KIND.get(deck.kind, MODES_BY_KIND["vocab"])
-    if mode not in allowed:
+    if mode == "random":
+        mode = random.choice(sorted(allowed))
+    elif mode not in allowed:
         raise HTTPException(400, f"Mode {mode!r} not available for deck kind {deck.kind!r}")
 
     if deck.kind == "vocab":

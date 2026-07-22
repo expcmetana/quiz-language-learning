@@ -394,6 +394,12 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
   font-size: 1.05rem;
   font-weight: 600;
 }
+.mode-btn--random {
+  background: transparent;
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+}
+.mode-btn--random:hover { background: var(--surface-2); }
 
 /* ---------- Exercise card ---------- */
 .ex-prompt {

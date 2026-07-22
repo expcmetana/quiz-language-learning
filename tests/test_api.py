@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import func, select
 
-from app.models import CardState, Deck, Profile, ReviewLog, Word
+from app.models import CardState, Deck, Exercise, Profile, ReviewLog, Word
 from app.routers import study
 from app.seed import SEED_DECK_NAME
 
@@ -335,6 +335,52 @@ def test_summary_hides_continue_when_deck_fully_exhausted(make_client, db):
 
     assert "Сессия завершена" in r.text
     assert "Продолжить обучение" not in r.text
+
+
+# --- study: random mode ---------------------------------------------------
+
+def test_block_detail_offers_random_mode_button(make_client, db):
+    c = make_client("Alice")
+    deck_id = _seed_deck_id(db)
+    r = c.get(f"/blocks/{deck_id}")
+    assert r.status_code == 200
+    assert 'value="random"' in r.text
+    assert "Случайный режим" in r.text
+
+
+def test_random_mode_resolves_to_an_allowed_vocab_mode(make_client, db):
+    c = make_client("Alice")
+    deck_id = _seed_deck_id(db)
+
+    seen = set()
+    for _ in range(15):
+        r = c.post("/study/start", data={"deck_id": deck_id, "mode": "random"}, follow_redirects=False)
+        assert r.status_code == 303
+        sid = r.headers["location"].rsplit("/", 1)[-1]
+        sess = study._sessions[sid]
+        assert sess.mode in study.MODES_BY_KIND["vocab"]
+        seen.add(sess.mode)
+        study._sessions.pop(sid, None)
+
+    assert len(seen) > 1  # actually varies across runs, not hardcoded to one mode
+
+
+def test_random_mode_resolves_within_deck_kind_only(make_client, db):
+    c = make_client("Alice")
+    r = c.post("/decks", data={"name": "Conj Deck"}, follow_redirects=False)
+    deck_id = int(r.headers["location"].rsplit("/", 1)[-1])
+    deck = db.get(Deck, deck_id)
+    deck.kind = "tenses"
+    db.add(Exercise(deck_id=deck_id, type="conj", prompt="hablar · Presente · yo", answer="hablo", choices="habla;hablas;hablamos"))
+    db.commit()
+
+    for _ in range(10):
+        r = c.post("/study/start", data={"deck_id": deck_id, "mode": "random"}, follow_redirects=False)
+        assert r.status_code == 303
+        sid = r.headers["location"].rsplit("/", 1)[-1]
+        sess = study._sessions[sid]
+        assert sess.mode in {"choice", "typed"}  # tenses decks never offer flashcards/match
+        study._sessions.pop(sid, None)
 
 
 # --- study: match --------------------------------------------------------

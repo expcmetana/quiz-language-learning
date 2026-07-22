@@ -19,7 +19,7 @@ def block_detail(
         raise HTTPException(404, "Block not found")
     now = datetime.now(timezone.utc)
     stats = block_stats(db, profile.id, deck, now)
-    modes = sorted(MODES_BY_KIND.get(deck.kind, MODES_BY_KIND["vocab"]))
+    modes = sorted(MODES_BY_KIND.get(deck.kind, MODES_BY_KIND["vocab"])) + ["random"]
     return templates.TemplateResponse(
         request,
         "blocks.html",
