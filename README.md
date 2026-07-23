@@ -12,7 +12,7 @@ A local, self-hosted Spanish → Russian language trainer with SM-2 spaced repet
 | ![Flashcards](docs/screenshots/quiz-flashcards.png) | ![Session summary with continue option](docs/screenshots/quiz-summary.png) |
 | Flashcards (self-graded) | Session summary — offers to continue if the deck has more due/unseen cards |
 | ![Dashboard](docs/screenshots/dashboard.png) | ![Stats](docs/screenshots/stats.png) |
-| Dashboard — progress per learning block | Stats — accuracy by mode, hardest words |
+| Dashboard — progress per learning block | Stats — accuracy by mode (correct/failed counts), daily correct/failed breakdown, hardest words |
 
 More screens (profile picker, block/mode selector) are in [`docs/screenshots/`](docs/screenshots/).
 
@@ -26,7 +26,7 @@ More screens (profile picker, block/mode selector) are in [`docs/screenshots/`](
 - **Multiple local profiles** (Netflix-style picker, no passwords) with independent
   SM-2 progress per word and per exercise
 - **Custom decks**: create your own, CSV import/export (`es,ru,example`)
-- **Stats**: reviews per day, accuracy by mode, hardest words/exercises
+- **Stats**: reviews per day (correct/failed breakdown), accuracy by mode (correct/failed counts), hardest words/exercises
 
 ## Data safety
 
