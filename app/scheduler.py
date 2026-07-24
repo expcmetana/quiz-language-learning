@@ -42,6 +42,7 @@ def build_session(
             .order_by(Word.id)
             .limit(new_slots)
         ).scalars().all()
+        random.shuffle(new_words)
         words.extend(new_words)
 
     return words
@@ -80,6 +81,7 @@ def build_exercise_session(
             .order_by(Exercise.id)
             .limit(new_slots)
         ).scalars().all()
+        random.shuffle(new_exercises)
         exercises.extend(new_exercises)
 
     return exercises
